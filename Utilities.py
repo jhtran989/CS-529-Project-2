@@ -47,6 +47,8 @@ if __name__ == "__main__":
 
     print(attribute_names_training)
     print(data_df_training['cap-shape'][1000])
+    print(data_df_training)
+    print(output_df_training)
     print(output_df_training[1000])
 
     data_df_testing, attribute_names_testing = \
@@ -55,3 +57,8 @@ if __name__ == "__main__":
     print(attribute_names_testing)
     print(data_df_testing['cap-shape'][1])
 
+    for entry in data_df_testing['cap-shape']:
+        print(f"{entry}", end=" ")
+    print()
+
+    print(data_df_testing['cap-shape'][1])
