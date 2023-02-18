@@ -5,6 +5,11 @@ import pandas
 #     with open(filename) as csv_file:
 #         csv_reader = csv.DictReader(csv_file)
 
+
+# Global Attributes
+ID_NAME = "id"
+CLASS_NAME = "class"
+
 def parse_data_training(filename):
     """
     Parse the training data csv
@@ -18,7 +23,10 @@ def parse_data_training(filename):
     data_df = pandas.read_csv(filename)
 
     data_df.pop('id')
-    output_df = data_df.pop('class')
+
+    # FIXME: create copy of the output
+    # output_df = data_df.pop('class')
+    output_df = data_df[[CLASS_NAME]].copy()
 
     attribute_names = list(data_df.keys())
 

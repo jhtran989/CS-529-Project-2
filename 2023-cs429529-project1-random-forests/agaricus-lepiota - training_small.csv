@@ -1,0 +1,16 @@
+id,class,cap-shape,cap-surface,cap-color,bruises,odor,gill-attachment,gill-spacing,gill-size,gill-color,stalk-shape,stalk-root,stalk-surface-ar,stalk-surface-br,stalk-color-ar,stalk-color-br,veil-type,veil-color,ring-number,ring-type,spore-print-color,population,habitat
+1000,e,x,f,g,f,n,f,w,b,n,t,e,s,s,w,w,p,w,o,e,n,a,g
+1001,e,f,y,g,t,n,f,c,b,n,t,b,s,s,g,w,p,w,o,p,k,y,d
+1002,e,f,f,g,t,n,f,c,b,n,t,b,s,s,g,p,p,w,o,p,n,v,d
+1003,p,f,y,y,f,f,f,c,b,h,e,b,k,k,n,p,p,w,o,l,h,v,g
+1004,e,b,y,y,t,l,f,c,b,w,e,c,s,s,w,w,p,w,o,p,n,s,g
+1005,p,f,s,n,f,s,f,c,n,b,t,?,k,s,w,p,p,w,o,e,w,v,p
+1006,e,x,f,e,t,n,f,c,b,n,t,b,s,s,p,p,p,w,o,p,n,y,d
+1007,p,k,y,e,f,s,f,c,n,b,t,?,s,s,p,p,p,w,o,e,w,v,p
+1008,e,x,y,y,t,l,f,c,b,w,e,c,s,s,w,w,p,w,o,p,k,s,m
+1009,p,x,y,y,f,f,f,c,b,h,e,b,k,k,n,b,p,w,o,l,h,y,g
+1010,p,x,f,y,f,f,f,c,b,p,e,b,k,k,b,n,p,w,o,l,h,v,g
+1011,e,x,y,y,t,a,f,c,b,n,e,c,s,s,w,w,p,w,o,p,k,s,g
+1012,p,f,s,n,f,s,f,c,n,b,t,?,k,s,w,p,p,w,o,e,w,v,d
+1013,e,s,f,n,f,n,f,c,n,n,e,e,s,s,w,w,p,w,o,p,k,v,u
+1014,p,f,f,y,f,f,f,c,b,p,e,b,k,k,n,n,p,w,o,l,h,v,d
