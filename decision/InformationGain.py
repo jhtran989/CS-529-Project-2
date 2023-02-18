@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from enum import Enum, auto
-from Tree import Tree, Node
+from tree.Tree import Tree, Node
 
 
 class InformationGainEnum(Enum):

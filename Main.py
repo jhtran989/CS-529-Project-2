@@ -1,8 +1,6 @@
 from Utilities \
-    import parse_data_training, parse_data_testing
-from Attribute \
-    import Attribute, ClassificationClass
-from Parameters import DataParameters
+    import parse_data_training
+from parameters.Parameters import DataParameters
 
 if __name__ == "__main__":
     data_df_training, output_df_training, attribute_names_list_training = \

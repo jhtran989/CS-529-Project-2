@@ -1,5 +1,6 @@
-from Parameters import DataParameters, HyperParameters
-from InformationGain import InformationGainEnum
+from parameters.Parameters import DataParameters
+from parameters.HyperParameters import HyperParameters
+from decision.InformationGain import InformationGainEnum
 import pandas
 from pandas import DataFrame
 

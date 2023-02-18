@@ -1,8 +1,6 @@
 import pandas
 import random
 
-from InformationGain import InformationGainEnum
-
 
 class DataParameters:
     def __init__(self, attribute_dict: dict, class_instance_list):
@@ -36,19 +34,4 @@ class DataParameters:
         rand_num = random.randint(1, n)
 
         return random.sample(self.attribute_dict.keys(), k=rand_num)
-
-class HyperParameters:
-    def __init__(self,
-                 class_instance_cutoff_ratio,
-                 chi_square_alpha,
-                 information_gain: InformationGainEnum,
-                 num_attributes_interval,
-                 num_trees,
-                 percent_training_validation):
-        self.class_instance_cutoff_ratio = class_instance_cutoff_ratio
-        self.chi_square_alpha = chi_square_alpha
-        self.information_gain = information_gain
-        self.num_attributes_interval = num_attributes_interval
-        self.num_trees = num_trees
-        self.percent_training_validation = percent_training_validation
 
