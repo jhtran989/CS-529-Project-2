@@ -26,12 +26,7 @@ if __name__ == "__main__":
                                        1,
                                        0.2)
 
-    # print(output_df_training[CLASS_NAME].shape)
-    # print(pandas.unique(output_df_training).shape)
-
     data_parameters = DataParameters(data_df_training, output_df_training, attribute_names_list_training)
-    # set_attribute_dict(data_df_training, attribute_names_list_training)
-    # set_class_instance_list(output_df_training)
 
     if MAIN_DEBUG:
         print("data:")
