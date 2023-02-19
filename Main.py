@@ -6,8 +6,13 @@ from parameters.HyperParameters import HyperParameters
 from decision.InformationGain import InformationGainEnum
 
 from Utilities import CLASS_NAME
+from tree.TreeUtilities import get_class_instance_partition_dict
 
 import pandas
+
+# Global variables
+MAIN_DEBUG = Tree
+
 
 if __name__ == "__main__":
     # testing with a small dataset first
@@ -16,7 +21,7 @@ if __name__ == "__main__":
 
     hyper_parameters = HyperParameters(0.95,
                                        0.05,
-                                       InformationGainEnum.ENTROPY,
+                                       InformationGainEnum.MISCLASSIFICATION_ERROR,
                                        [5, 7],
                                        1,
                                        0.2)
@@ -28,8 +33,12 @@ if __name__ == "__main__":
     # set_attribute_dict(data_df_training, attribute_names_list_training)
     # set_class_instance_list(output_df_training)
 
-    print(data_parameters.attribute_dict)
-    print(data_parameters.class_instance_list)
+    if MAIN_DEBUG:
+        print("data:")
+        print(data_df_training)
+        print(data_parameters.attribute_dict)
+        print(data_parameters.class_instance_list)
+        print(get_class_instance_partition_dict(data_parameters, data_df_training))
 
     root = Node(data_df_training)
 

@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 from abc import abstractmethod
 from enum import Enum, auto
-from math import log2
+from math import log2, pow
 
 from Utilities import CLASS_NAME
 from tree.TreeUtilities import get_class_instance_partition_dict, get_class_instance_partition_prop_dict
@@ -23,6 +23,16 @@ class InformationGainEnum(Enum):
 INFORMATION_GAIN_DEBUG = True
 
 
+def InformationGainFactory(information_gain_method: InformationGainEnum, tree: Tree, node: Node):
+    information_gain_constructors_dict = {
+        InformationGainEnum.ENTROPY: Entropy,
+        InformationGainEnum.GINI_INDEX: GiniIndex,
+        InformationGainEnum.MISCLASSIFICATION_ERROR: MisclassificationError,
+    }
+
+    return information_gain_constructors_dict[information_gain_method](information_gain_method, tree, node)
+
+
 class InformationGain:
     def __init__(self,
                  information_gain_method: InformationGainEnum,
@@ -30,6 +40,9 @@ class InformationGain:
                  node: Node):
         self.information_gain_method = information_gain_method
         self.tree = tree
+        self.node = node
+
+    def update_node(self, node: Node):
         self.node = node
 
     @abstractmethod
@@ -168,8 +181,8 @@ class InformationGain:
         if INFORMATION_GAIN_DEBUG:
             print(f"-------------------------------------------------------------------")
             print(f"class instances: {node.class_instance_partition_dict}")
-            print(f"entropy parent: {measure_parent}")
-            print(f"entropy attribute: {measure_attribute}")
+            print(f"measure parent: {measure_parent}")
+            print(f"measure attribute: {measure_attribute}")
 
         return max(measure_attribute, key=measure_attribute.get)
 
@@ -293,7 +306,12 @@ class GiniIndex(InformationGain):
         if INFORMATION_GAIN_DEBUG:
             print(f"class instance: {prop_key_value[0]}, prop: {prop}")
 
-        return -(prop * log2(prop))
+        return pow(prop, 2)
+
+    def calculate_measure_total(self, class_instances_dict):
+        return 1 - sum(map(
+            lambda x: self.calculate_measure_partial_p(x),
+            get_class_instance_partition_prop_dict(class_instances_dict).items()))
 
 
 class MisclassificationError(InformationGain):
@@ -304,4 +322,21 @@ class MisclassificationError(InformationGain):
         InformationGain.__init__(self, information_gain_method, tree, node)
 
     def calculate_measure_partial_p(self, prop_key_value):
-        pass
+        """
+        Just return the prop
+
+        :param prop_key_value:
+        :return:
+        """
+        prop = prop_key_value[1]
+
+        if INFORMATION_GAIN_DEBUG:
+            print(f"class instance: {prop_key_value[0]}, prop: {prop}")
+
+        return prop
+
+    def calculate_measure_total(self, class_instances_dict):
+        return 1 - max(map(
+            lambda x: self.calculate_measure_partial_p(x),
+            get_class_instance_partition_prop_dict(class_instances_dict).items()))
+

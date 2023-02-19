@@ -4,7 +4,7 @@ if TYPE_CHECKING:
     from parameters.Parameters import DataParameters
     from parameters.HyperParameters import HyperParameters
 
-from decision.InformationGain import InformationGainEnum, Entropy
+from decision.InformationGain import InformationGainEnum, Entropy, InformationGainFactory
 from tree.TreeUtilities import get_class_instance_partition_dict
 
 import pandas
@@ -49,17 +49,20 @@ class Tree:
         self.root = root
         self.hyper_parameters = hyper_parameters
         self.data_parameters = data_parameters
-        self.frontier_list = [root]
 
-        # IMPORTANT
         # class_instance_partition_dict = {}
         # for class_instance in self.data_parameters.class_instance_list:
         #     class_instance_partition_dict[class_instance] = \
         #         self.root.current_training_data.value_counts()[class_instance]
 
+        # TODO: set other parameters
+        self.frontier_list = [root]
         self.root.class_instance_partition_dict = \
             get_class_instance_partition_dict(data_parameters, root.current_training_data_df)
+        self.information_gain_driver = InformationGainFactory(hyper_parameters.information_gain_method, self, None)
 
+
+    # TODO: remember to update the node in the information_gain_driver each call
     def grow_level(self):
         information_gain = self.hyper_parameters.information_gain_method
         data_parameters = self.data_parameters
@@ -67,23 +70,36 @@ class Tree:
 
         # TODO: set parent stuff for each node in the frontier_list...
 
-        if information_gain == InformationGainEnum.ENTROPY:
-            for node in frontier_list:
-                current_training_data = node.current_training_data_df
+        # if information_gain == InformationGainEnum.ENTROPY:
+        #     for node in frontier_list:
+        #         current_training_data = node.current_training_data_df
+        #
+        #         # if there are no more attributes to split with, then choose the output with the majority
+        #         if current_training_data.empty:
+        #             class_instance_partition_dict = node.class_instance_partition_dict
+        #             node.output = max(class_instance_partition_dict, key=class_instance_partition_dict.get)
+        #
+        #         # perform the split normally
+        #         else:
+        #             infromation_gain_method = self.hyper_parameters.information_gain_method
+        #
+        #             if infromation_gain_method == InformationGainEnum.ENTROPY:
+        #                 information_gain = Entropy(infromation_gain_method, self, node)
+        #
+        #                 information_gain.find_split()
 
-                # if there are no more attributes to split with, then choose the output with the majority
-                if current_training_data.empty:
-                    class_instance_partition_dict = node.class_instance_partition_dict
-                    node.output = max(class_instance_partition_dict, key=class_instance_partition_dict.get)
+        for node in frontier_list:
+            current_training_data = node.current_training_data_df
+            self.information_gain_driver.update_node(node)
 
-                # perform the split normally
-                else:
-                    infromation_gain_method = self.hyper_parameters.information_gain_method
+            # if there are no more attributes to split with, then choose the output with the majority
+            if current_training_data.empty:
+                class_instance_partition_dict = node.class_instance_partition_dict
+                node.output = max(class_instance_partition_dict, key=class_instance_partition_dict.get)
 
-                    if infromation_gain_method == InformationGainEnum.ENTROPY:
-                        information_gain = Entropy(infromation_gain_method, self, node)
-
-                        information_gain.find_split()
+            # perform the split normally
+            else:
+                self.information_gain_driver.find_split()
 
 
 # FIXME: moved information stuff into tree due to CIRCULAR IMPORT...
