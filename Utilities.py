@@ -1,14 +1,10 @@
 import csv
 import pandas
 
-# def parse_data(filename):
-#     with open(filename) as csv_file:
-#         csv_reader = csv.DictReader(csv_file)
-
-
 # Global Attributes
 ID_NAME = "id"
 CLASS_NAME = "class"
+
 
 def parse_data_training(filename):
     """

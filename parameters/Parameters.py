@@ -7,10 +7,6 @@ from Utilities import CLASS_NAME
 
 
 class DataParameters:
-    # def __init__(self, attribute_dict: dict = None, class_instance_list=None):
-    #     self.attribute_dict = attribute_dict
-    #     self.class_instance_list = class_instance_list
-
     def __init__(self, data_df: DataFrame, output_df: DataFrame, attribute_list: list):
         self.data_df = data_df
         self.output_df = output_df
