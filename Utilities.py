@@ -5,6 +5,7 @@ import numpy as np
 # Global Attributes
 ID_NAME = "id"
 CLASS_NAME = "class"
+MISSING_DATA_VALUE = "?"
 
 
 def parse_data_training(filename):

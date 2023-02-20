@@ -1,9 +1,10 @@
 import random
 
+import numpy as np
 import pandas
 from pandas import DataFrame
 
-from Utilities import CLASS_NAME
+from Utilities import CLASS_NAME, MISSING_DATA_VALUE
 from PrintUtilities import auto_str
 
 
@@ -28,12 +29,25 @@ class DataParameters:
         return attribute_dict
 
     @staticmethod
-    def get_class_instance_list(output_df):
-        return pandas.unique(output_df[CLASS_NAME])
+    def get_class_instance_list(output_df: DataFrame):
+        # unique_attribute_instances_array = pandas.unique(output_df[CLASS_NAME])
+        #
+        # # need to remove instances that represent MISSING DATA
+        # unique_attribute_instances_no_missing_array = np.delete(unique_attribute_instances_array,
+        #                                              np.where(unique_attribute_instances_array ==
+        #                                                       MISSING_DATA_VALUE))
+
+        return DataParameters.get_labels(output_df, CLASS_NAME)
 
     @staticmethod
     def get_labels(data_df, attribute):
-        return pandas.unique(data_df[attribute])
+        # need to remove instances that represent MISSING DATA
+        unique_labels_array = pandas.unique(data_df[attribute])
+        unique_labels_no_missing_array = np.delete(unique_labels_array,
+                                                                np.where(unique_labels_array ==
+                                                                         MISSING_DATA_VALUE))
+
+        return unique_labels_no_missing_array
 
     def get_random_attributes(self, attribute_visited_list: list, n):
         """

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-import pandas
+import pandas as pd
 
 if TYPE_CHECKING:
     from tree.Tree import Tree, Node
@@ -9,12 +9,15 @@ if TYPE_CHECKING:
 from abc import abstractmethod
 from enum import Enum, auto
 from math import log2, pow
+import pandas
+import numpy as np
 
-from Utilities import CLASS_NAME
+from Utilities import CLASS_NAME, MISSING_DATA_VALUE
 from tree.TreeUtilities import get_df_row_count, \
     get_class_instance_partition_dict, \
     get_class_instance_partition_prop_dict
 from PrintUtilities import auto_str
+from decision.InformationGainUtilities import get_normalized_prob, get_uniform_prob
 
 
 @auto_str
@@ -25,7 +28,7 @@ class InformationGainEnum(Enum):
 
 
 # Debug flags
-INFORMATION_GAIN_DEBUG = False
+INFORMATION_GAIN_DEBUG = True
 INFORMATION_GAIN_PRINT = True
 
 
@@ -81,7 +84,9 @@ class InformationGain:
 
         data_parameters = tree.data_parameters
         attribute_dict = tree.data_parameters.attribute_dict
-        current_training_data = node.current_training_data_df
+
+        # FIXME: need to create a copy so handling of missing data doesn't propagate to other levels...
+        current_training_data = node.current_training_data_df[:]
 
         # get random attributes
         num_data_entries, num_attributes = current_training_data.shape
@@ -109,9 +114,54 @@ class InformationGain:
 
             measure_attribute[attribute] = measure_parent
 
+            # FIXME: reorganized code to get the counts of each attribute instance initially
+            attribute_instances_count_dict = {}
+
+            for attribute_value in attribute_instances:
+                attribute_value_count = get_df_row_count(current_training_data, attribute, attribute_value)
+                attribute_instances_count_dict[attribute_value] = attribute_value_count
+
+            total_non_missing_data_entries = sum(attribute_instances_count_dict.values())
+
             if INFORMATION_GAIN_DEBUG:
                 print(f"-------------------------------------------------------------------")
                 print(f"Attribute: {attribute}")
+                print(f"attribute instances: {attribute_dict[attribute]}")
+                print(f"focused data:")
+                print(f"{current_training_data[[CLASS_NAME, attribute]]}")
+                print(f"attribute instances count: {attribute_instances_count_dict}")
+                print(f"num rows: {len(current_training_data[attribute])}")
+                print(f"num non-missing rows: {total_non_missing_data_entries}")
+
+            # TODO: need to handle MISSING DATA (at each split)
+            # uses the same proportion as the non-missing data to fill in the missing data
+
+            # if current_training_data[attribute].eq(MISSING_DATA_VALUE).any():
+            if total_non_missing_data_entries < num_data_entries:
+                current_training_data[attribute] = \
+                    current_training_data[attribute].replace(MISSING_DATA_VALUE, np.NaN)
+
+                # TODO: what if all the data is missing...
+                if total_non_missing_data_entries == 0:
+                    uniform_prob = get_uniform_prob(attribute_instances_count_dict)
+
+                    current_training_data[attribute] = \
+                        current_training_data[attribute].fillna(pd.Series(np.random.choice(
+                            attribute_instances,
+                            p=uniform_prob, size=len(current_training_data))))
+                else:
+                    non_missing_normalized_prob = get_normalized_prob(attribute_instances_count_dict,
+                                                                      total_non_missing_data_entries)
+
+                    current_training_data[attribute] = \
+                        current_training_data[attribute].fillna(pd.Series(np.random.choice(
+                            attribute_instances,
+                            p=non_missing_normalized_prob, size=len(current_training_data))))
+
+                if INFORMATION_GAIN_DEBUG:
+                    print("MISSING DATA")
+                    print("processed data:")
+                    print(current_training_data[[CLASS_NAME, attribute]])
 
             for attribute_value in attribute_instances:
                 # SOLVED: value_counts() can use proportion instead of raw count...
@@ -136,10 +186,9 @@ class InformationGain:
 
                 # SOLVED: entropy values are greater than 1... -> used += instead of -=
                 measure_attribute_value_weighted = attribute_value_prop * \
-                                               self.calculate_measure_total(
-                                                   class_instances_attribute_value_dict)
+                                                   self.calculate_measure_total(
+                                                       class_instances_attribute_value_dict)
                 measure_attribute[attribute] -= measure_attribute_value_weighted
-
 
                 if INFORMATION_GAIN_DEBUG:
                     print(f"partial measure (weighted): {measure_attribute_value_weighted}")
@@ -242,4 +291,3 @@ class MisclassificationError(InformationGain):
         return 1 - max(map(
             lambda x: self.calculate_measure_partial_p(x),
             get_class_instance_partition_prop_dict(class_instances_dict).items()))
-
