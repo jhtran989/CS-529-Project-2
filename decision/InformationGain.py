@@ -11,16 +11,22 @@ from enum import Enum, auto
 from math import log2, pow
 
 from Utilities import CLASS_NAME
-from tree.TreeUtilities import get_class_instance_partition_dict, get_class_instance_partition_prop_dict
+from tree.TreeUtilities import get_df_row_count, \
+    get_class_instance_partition_dict, \
+    get_class_instance_partition_prop_dict
+from PrintUtilities import auto_str
 
 
+@auto_str
 class InformationGainEnum(Enum):
     ENTROPY = auto()
     GINI_INDEX = auto()
     MISCLASSIFICATION_ERROR = auto()
 
 
-INFORMATION_GAIN_DEBUG = True
+# Debug flags
+INFORMATION_GAIN_DEBUG = False
+INFORMATION_GAIN_PRINT = True
 
 
 def InformationGainFactory(information_gain_method: InformationGainEnum, tree: Tree, node: Node):
@@ -33,6 +39,7 @@ def InformationGainFactory(information_gain_method: InformationGainEnum, tree: T
     return information_gain_constructors_dict[information_gain_method](information_gain_method, tree, node)
 
 
+# @auto_str
 class InformationGain:
     def __init__(self,
                  information_gain_method: InformationGainEnum,
@@ -78,7 +85,11 @@ class InformationGain:
 
         # get random attributes
         num_data_entries, num_attributes = current_training_data.shape
-        random_attribute_list = data_parameters.get_random_attributes(num_attributes)
+
+        attribute_visited_list = node.attribute_visited_list
+
+        # FIXME: need to remove attributes already visited from random list...
+        random_attribute_list = data_parameters.get_random_attributes(attribute_visited_list, num_attributes)
 
         if INFORMATION_GAIN_DEBUG:
             print(f"shape of data: {current_training_data.shape}")
@@ -103,8 +114,10 @@ class InformationGain:
                 print(f"Attribute: {attribute}")
 
             for attribute_value in attribute_instances:
-                # FIXME: value_counts() can use proportion instead of raw count...
-                attribute_value_count = current_training_data[attribute].value_counts()[attribute_value]
+                # SOLVED: value_counts() can use proportion instead of raw count...
+                # handle exception from value_counts()
+                # attribute_value_count = current_training_data[attribute].value_counts()[attribute_value]
+                attribute_value_count = get_df_row_count(current_training_data, attribute, attribute_value)
                 attribute_value_prop = attribute_value_count / num_data_entries
 
                 class_instances_attribute_value_df = \
@@ -116,6 +129,10 @@ class InformationGain:
 
                 if INFORMATION_GAIN_DEBUG:
                     print(f"---------")
+                    print(f"attribute value: {attribute_value}")
+                    print(f"attribute value proportion: {attribute_value_prop}")
+                    print(f"current data: \n{class_instances_attribute_value_df[[CLASS_NAME, attribute]]}")
+                    print(f"class instance dict: {class_instances_attribute_value_dict}")
 
                 # SOLVED: entropy values are greater than 1... -> used += instead of -=
                 measure_attribute_value_weighted = attribute_value_prop * \
@@ -125,26 +142,25 @@ class InformationGain:
 
 
                 if INFORMATION_GAIN_DEBUG:
-                    print(f"attribute value: {attribute_value}")
-                    print(f"attribute value proportion: {attribute_value_prop}")
                     print(f"partial measure (weighted): {measure_attribute_value_weighted}")
                     # print(f"attribute proportion (value_counts): "
                     #       f"{current_training_data[attribute].value_counts(normalize=True)[attribute_value]}")
-                    print(f"current data: \n{class_instances_attribute_value_df[[CLASS_NAME, attribute]]}")
 
             if INFORMATION_GAIN_DEBUG:
                 print(f"---------")
                 print(f"final measure: {measure_attribute[attribute]}")
 
-        if INFORMATION_GAIN_DEBUG:
+        if INFORMATION_GAIN_PRINT:
             print(f"-------------------------------------------------------------------")
             print(f"class instances: {node.class_instance_partition_dict}")
             print(f"measure parent: {measure_parent}")
             print(f"measure attribute: {measure_attribute}")
+            print(f"-------------------------------------------------------------------")
 
         return max(measure_attribute, key=measure_attribute.get)
 
 
+# @auto_str
 class Entropy(InformationGain):
     def __init__(self,
                  information_gain_method: InformationGainEnum,
@@ -178,6 +194,7 @@ class Entropy(InformationGain):
         return -(prop * log2(prop))
 
 
+# @auto_str
 class GiniIndex(InformationGain):
     def __init__(self,
                  information_gain_method: InformationGainEnum,
@@ -199,6 +216,7 @@ class GiniIndex(InformationGain):
             get_class_instance_partition_prop_dict(class_instances_dict).items()))
 
 
+# @auto_str
 class MisclassificationError(InformationGain):
     def __init__(self,
                  information_gain_method: InformationGainEnum,

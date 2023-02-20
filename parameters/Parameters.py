@@ -4,8 +4,10 @@ import pandas
 from pandas import DataFrame
 
 from Utilities import CLASS_NAME
+from PrintUtilities import auto_str
 
 
+@auto_str
 class DataParameters:
     def __init__(self, data_df: DataFrame, output_df: DataFrame, attribute_list: list):
         self.data_df = data_df
@@ -33,22 +35,33 @@ class DataParameters:
     def get_labels(data_df, attribute):
         return pandas.unique(data_df[attribute])
 
-    def get_random_attributes(self, n):
+    def get_random_attributes(self, attribute_visited_list: list, n):
         """
         Only choose an interval of attributes to look at
 
         Uniformly over interval [1, n] where n is the number of attributes left to look at in the reduced training
         data (current node)
+        :param n:
+        :param attribute_visited_list:
         :return:
         """
-
-        # need to subtract 1
-        rand_num = random.randint(1, n - 1)
 
         # TODO: need to remove the "class" attribute from the randomization...
         attribute_names = list(self.attribute_dict.keys())
         attribute_names.remove(CLASS_NAME)
 
+        # need to take the set difference so we don't look at the same attribute along the same path
+        set_diff = set(attribute_names).symmetric_difference(set(attribute_visited_list))
+        remaining_attributes_list = list(set_diff)
+
+        num_remaining_attributes = len(remaining_attributes_list)
+
+        # need to subtract 1 - INCLUSIVE
+        rand_num = random.randint(1, num_remaining_attributes - 1)
+
+        # FIXME: the set_diff should NOT be empty...
+        assert(num_remaining_attributes > 0)
+
         # TypeError: Population must be a sequence.  For dicts or sets, use sorted(d).
-        return random.sample(attribute_names, k=rand_num)
+        return random.sample(remaining_attributes_list, k=rand_num)
 

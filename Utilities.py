@@ -1,5 +1,6 @@
 import csv
 import pandas
+import numpy as np
 
 # Global Attributes
 ID_NAME = "id"
@@ -47,27 +48,47 @@ def parse_data_testing(filename):
     return data_df, attribute_names
 
 if __name__ == "__main__":
+    # data_df_training, output_df_training, attribute_names_training = \
+    #     parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
     data_df_training, output_df_training, attribute_names_training = \
-        parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
+        parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training_small.csv")
 
-    print(attribute_names_training)
-    print(data_df_training)
-    print(data_df_training['cap-shape'][0])
-    print(output_df_training)
-    print(output_df_training[0])
+    # print(attribute_names_training)
+    # print(data_df_training)
+    # print(data_df_training['cap-shape'][0])
+    # print(output_df_training)
+    # print(output_df_training[0])
+    #
+    # data_df_testing, attribute_names_testing = \
+    #     parse_data_testing(f"2023-cs429529-project1-random-forests/agaricus-lepiota - testing.csv")
+    #
+    # print(data_df_testing)
+    # print(attribute_names_testing)
+    # print(data_df_testing['cap-shape'][1])
+    #
+    # for entry in data_df_testing['cap-shape']:
+    #     print(f"{entry}", end=" ")
+    # print()
+    #
+    # print(data_df_testing['cap-shape'][1])
+    #
+    # for index, value in enumerate(data_df_training['cap-shape']):
+    #     print(f"{index}: {value}")
 
-    data_df_testing, attribute_names_testing = \
-        parse_data_testing(f"2023-cs429529-project1-random-forests/agaricus-lepiota - testing.csv")
+    scratch_data_df = data_df_training[:]
 
-    print(data_df_testing)
-    print(attribute_names_testing)
-    print(data_df_testing['cap-shape'][1])
+    # Test missing data
+    print("Missing Data")
+    print("before")
+    print(scratch_data_df["stalk-root"])
 
-    for entry in data_df_testing['cap-shape']:
-        print(f"{entry}", end=" ")
-    print()
+    scratch_data_df["stalk-root"] = scratch_data_df["stalk-root"].replace(to_replace="?", value=np.NaN)
+    scratch_data_df["stalk-root"] = scratch_data_df["stalk-root"].fillna(1)
 
-    print(data_df_testing['cap-shape'][1])
+    print("after")
+    print(scratch_data_df["stalk-root"])
 
-    for index, value in enumerate(data_df_training['cap-shape']):
-        print(f"{index}: {value}")
+    print("original")
+    print(data_df_training.loc[0:14, "stalk-root"])
+
+

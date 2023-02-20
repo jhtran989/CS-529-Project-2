@@ -21,24 +21,27 @@ if __name__ == "__main__":
 
     hyper_parameters = HyperParameters(0.95,
                                        0.05,
-                                       InformationGainEnum.MISCLASSIFICATION_ERROR,
+                                       InformationGainEnum.ENTROPY,
                                        [5, 7],
                                        1,
                                        0.2)
 
     data_parameters = DataParameters(data_df_training, output_df_training, attribute_names_list_training)
 
-    if MAIN_DEBUG:
-        print("data:")
-        print(data_df_training)
-        print(data_parameters.attribute_dict)
-        print(data_parameters.class_instance_list)
-        print(get_class_instance_partition_dict(data_parameters, data_df_training))
+    # if MAIN_DEBUG:
+    #     print("data:")
+    #     print(data_df_training)
+    #     print(data_parameters.attribute_dict)
+    #     print(data_parameters.class_instance_list)
+    #     print(get_class_instance_partition_dict(data_parameters, data_df_training))
 
     root = Node(data_df_training)
 
     test_tree = Tree(root, hyper_parameters, data_parameters)
-    test_tree.grow_level()
+    # test_tree.grow_level()
+    test_tree.build_tree()
+
+    # print(str(test_tree))
 
 
 

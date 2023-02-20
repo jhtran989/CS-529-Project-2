@@ -1,6 +1,9 @@
 from decision.InformationGain import InformationGainEnum
 
+from PrintUtilities import auto_str
 
+
+@auto_str
 class HyperParameters:
     def __init__(self,
                  class_instance_cutoff_ratio,
