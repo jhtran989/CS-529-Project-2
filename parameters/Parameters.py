@@ -49,6 +49,38 @@ class DataParameters:
 
         return unique_labels_no_missing_array
 
+    def get_random_attributes_max_num(self, attribute_visited_list: list, max_num_attributes_check):
+        """
+        Same as below except the interval is now [1, min(max_num, num_remaining_attributes)]
+        
+        max_num is carried over from the hyper parameters
+        
+        :param attribute_visited_list: 
+        :param max_num_attributes_check: 
+        :return: 
+        """
+
+        # TODO: need to remove the "class" attribute from the randomization...
+        attribute_names = list(self.attribute_dict.keys())
+        attribute_names.remove(CLASS_NAME)
+
+        # need to take the set difference so we don't look at the same attribute along the same path
+        set_diff = set(attribute_names).symmetric_difference(set(attribute_visited_list))
+        remaining_attributes_list = list(set_diff)
+
+        num_remaining_attributes = len(remaining_attributes_list)
+
+        # need to subtract 1 - INCLUSIVE
+        num_attributes_check = min(num_remaining_attributes, max_num_attributes_check)
+        rand_num = random.randint(1, num_attributes_check - 1)
+
+        # FIXME: the set_diff should NOT be empty...
+        assert (num_remaining_attributes > 0)
+
+        # TypeError: Population must be a sequence.  For dicts or sets, use sorted(d).
+        return random.sample(remaining_attributes_list,
+                             k=rand_num)
+
     def get_random_attributes(self, attribute_visited_list: list, n):
         """
         Only choose an interval of attributes to look at

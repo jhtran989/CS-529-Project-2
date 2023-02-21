@@ -1,8 +1,6 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from DebugFlags import TREE_DEBUG, TREE_PRINT
-
 if TYPE_CHECKING:
     from parameters.Parameters import DataParameters
     from parameters.HyperParameters import HyperParameters
@@ -16,6 +14,8 @@ from pandas import DataFrame
 
 from PrintUtilities import auto_str
 
+from DebugFlags import TREE_DEBUG, TREE_PRINT
+
 
 @auto_str
 class Node:
@@ -28,6 +28,7 @@ class Node:
                  class_instance_partition_dict: dict = {},
                  children_dict: dict = {},
                  attribute_visited_list: list = [],
+                 tree_level=0,
                  output=None):
         self.current_training_data_df = current_training_data_df
         self.parentNode = parentNode
@@ -37,6 +38,7 @@ class Node:
         self.class_instance_partition_dict = class_instance_partition_dict
         self.children_dict = children_dict
         self.attribute_visited_list = attribute_visited_list
+        self.tree_level = tree_level
         self.output = output
 
     @classmethod
@@ -66,8 +68,22 @@ class Tree:
             get_class_instance_partition_dict(data_parameters, root.current_training_data_df)
         self.information_gain_driver = InformationGainFactory(hyper_parameters.information_gain_method, self, None)
 
+        # TODO: set some stats (maybe with hyper parameters)
+        # level starts from 0 at the root
+        self.sum_levels = 0
+        self.max_depth = 0
+        self.average_depth = 0
+        self.total_num_nodes = 1
+
         # remember to update the current node AND chosen attribute at each split below
         self.chi_square = ChiSquare(self, None, None)
+
+    def print_stats(self):
+        print(f"top level attribute: {self.root.attribute}")
+        print(f"sum of levels: {self.sum_levels}")
+        print(f"max depth: {self.max_depth}")
+        print(f"average_depth: {self.average_depth}")
+        print(f"total number of nodes: {self.total_num_nodes}")
 
     def get_output(self, data_row_df):
         current_node = self.root
@@ -150,12 +166,18 @@ class Tree:
             new_attribute_visited_list = node.attribute_visited_list.copy()
             new_attribute_visited_list.append(attribute)
 
+            new_tree_level = node.tree_level + 1
+
+            self.sum_levels += new_tree_level
+            self.total_num_nodes += 1
+            self.max_depth = max(self.max_depth, new_tree_level)
+
             children_dict[attribute_value_to_node] = Node(new_current_training_data, parentNode=node,
                                                           parentAttribute=attribute,
                                                           parentAttributeInstance=attribute_value_to_node,
-                                                          class_instance_partition_dict=
-                                                          new_class_instance_partition_dict,
-                                                          attribute_visited_list=new_attribute_visited_list)
+                                                          class_instance_partition_dict=new_class_instance_partition_dict,
+                                                          attribute_visited_list=new_attribute_visited_list,
+                                                          tree_level=new_tree_level)
 
         return children_dict
 
@@ -184,6 +206,7 @@ class Tree:
                     print(f"class partition dict: {class_instance_partition_dict}")
                     print(f"set output: {class_instance_max}")
 
+                node.attribute = "No More Data"
                 node.output = class_instance_max
 
             # perform the split normally
@@ -204,6 +227,7 @@ class Tree:
                     if TREE_DEBUG:
                         print("cutoff reached...")
 
+                    node.attribute = "Class Majority Cutoff"
                     node.output = class_instance_max
 
                 # find the attribute with the highest information gain for the split and add nodes for each of the
@@ -239,11 +263,14 @@ class Tree:
 
                     # the chi-square failed at the test statistic was less than the critical value
                     else:
+                        node.attribute = "Chi Square Cutoff"
                         node.output = class_instance_max
 
                 # remove current node from frontier
                 # frontier_list.pop(0)
 
+        # at the very end of the build process
+        self.average_depth = self.sum_levels / self.total_num_nodes
 
 # SOLVED: moved information stuff into tree due to CIRCULAR IMPORT... -> used type annotations (if TYPE_CHECKING...)
 

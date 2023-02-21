@@ -11,7 +11,7 @@ from tree.TreeUtilities import get_df_row_count, get_class_instance_partition_pr
 from Utilities import CLASS_NAME
 
 from math import pow
-from scipy.stats import chi2
+from scipy.stats import chi2, chisquare as chisquare_scipy
 
 
 class ChiSquare:
@@ -74,7 +74,7 @@ class ChiSquare:
                            attribute_values_class_total_dict[attribute_value]
 
                 # FIXME: case where expected is 0...
-                # ignore the case for now
+                # FIXME: using the
                 if expected == 0:
                     pass
                 else:
@@ -89,3 +89,17 @@ class ChiSquare:
         chi_square_alpha = hyper_parameters.chi_square_alpha
 
         return critical_value > chi2.ppf(1 - chi_square_alpha, degrees_of_freedom)
+
+if __name__ == "__main__":
+    print(chi2.ppf([1, 0], [1, 1]))
+    # print(chisquare_scipy([16, 18, 16, 14, 12, 12, 16, 18, 16, 14, 12, 12, 1],
+    #                       f_exp=[16, 16, 16, 16, 16, 8, 16, 18, 16, 14, 12, 12, 0]))
+    # print(c([1, 1], f_exp=[0, 1]))
+    print(math.inf + 1)
+
+    a = {}
+    b = [1, 1]
+    b[:] += 1
+    print(b)
+
+

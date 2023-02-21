@@ -10,3 +10,7 @@ INFORMATION_GAIN_PRINT = False
 TREE_UTILITIES_DEBUG = False
 TREE_DEBUG = False
 TREE_PRINT = False
+
+# Random Forest (tree module)
+RANDOM_FOREST_DEBUG = True
+RANDOM_FOREST_PRINT = True

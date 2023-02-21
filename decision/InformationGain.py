@@ -88,8 +88,12 @@ class InformationGain:
 
         attribute_visited_list = node.attribute_visited_list
 
-        # FIXME: need to remove attributes already visited from random list...
-        random_attribute_list = data_parameters.get_random_attributes(attribute_visited_list, num_attributes)
+        # SOLVED: need to remove attributes already visited from random list...
+        # FIXME: update with hyper parameters to limit max number of attributes checked
+        # random_attribute_list = data_parameters.get_random_attributes(attribute_visited_list, num_attributes)
+        max_num_attributes_check = self.tree.hyper_parameters.max_num_attributes_check
+        random_attribute_list = \
+            data_parameters.get_random_attributes_max_num(attribute_visited_list, max_num_attributes_check)
 
         if INFORMATION_GAIN_DEBUG:
             print(f"shape of data: {current_training_data.shape}")
