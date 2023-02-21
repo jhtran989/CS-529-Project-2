@@ -1,22 +1,20 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
+from DebugFlags import TREE_DEBUG, TREE_PRINT
+
 if TYPE_CHECKING:
     from parameters.Parameters import DataParameters
     from parameters.HyperParameters import HyperParameters
 
-from decision.InformationGain import InformationGainEnum, Entropy, InformationGainFactory
+from decision.InformationGain import InformationGainFactory
 from tree.TreeUtilities import print_data_stats, get_class_instance_partition_dict
+from chi_square.ChiSquare import ChiSquare
 
 import pandas
 from pandas import DataFrame
 
-from Utilities import CLASS_NAME
 from PrintUtilities import auto_str
-
-# Debug flags
-TREE_DEBUG = True
-TREE_PRINT = True
 
 
 @auto_str
@@ -68,8 +66,32 @@ class Tree:
             get_class_instance_partition_dict(data_parameters, root.current_training_data_df)
         self.information_gain_driver = InformationGainFactory(hyper_parameters.information_gain_method, self, None)
 
+        # remember to update the current node AND chosen attribute at each split below
+        self.chi_square = ChiSquare(self, None, None)
+
+    def get_output(self, data_row_df):
+        current_node = self.root
+        current_attribute = current_node.attribute
+        current_output = current_node.output
+
+        while current_output is None:
+            # get the next node by following the tree
+            current_node = current_node.children_dict[data_row_df[current_attribute][0]]
+
+            # update the attributes and corresponding output
+            current_attribute = current_node.attribute
+            current_output = current_node.output
+
+        return current_output
+
+
     # TODO: remember to update the node in the information_gain_driver each call
     def grow_level(self):
+        """
+        FIXME: DEPRECATED...
+
+        :return:
+        """
         information_gain = self.hyper_parameters.information_gain_method
         data_parameters = self.data_parameters
         frontier_list = self.frontier_list
@@ -155,7 +177,7 @@ class Tree:
             class_instance_partition_dict = node.class_instance_partition_dict
             class_instance_max = max(class_instance_partition_dict, key=class_instance_partition_dict.get)
 
-            # if there are no more attributes to split with, then choose the output with the majority
+            # if there is no more data to split with, then choose the output with the majority
             if current_training_data.empty:
                 if TREE_DEBUG:
                     print("no more data...")
@@ -195,12 +217,29 @@ class Tree:
                     if TREE_DEBUG:
                         print(f"chosen attribute: {chosen_attribute}")
 
-                    # TODO: update the frontier nodes with new data and updating node parameters
-                    node.attribute = chosen_attribute
-                    node.children_dict = self.get_children_dict(node, chosen_attribute)
+                    self.chi_square.update_node_chosen_attribute(node, chosen_attribute)
 
-                    # TODO: add the children to the frontier
-                    frontier_list.extend(node.children_dict.values())
+                    # TODO: implement Chi Square to check for termination (set output)
+                    if self.chi_square.check_termination():
+                        # TODO: update the frontier nodes with new data and updating node parameters
+                        node.attribute = chosen_attribute
+                        node.attribute_visited_list.append(chosen_attribute)
+                        node.children_dict = self.get_children_dict(node, chosen_attribute)
+
+                        # FIXME: check if there is at least one attribute left to check
+                        num_attributes_visited = len(data_parameters.attribute_list)
+                        total_num_attributes = len(node.attribute_visited_list)
+
+                        # no more attributes to check...
+                        if num_attributes_visited == total_num_attributes:
+                            node.output = class_instance_max
+                        else:
+                            # TODO: add the children to the frontier
+                            frontier_list.extend(node.children_dict.values())
+
+                    # the chi-square failed at the test statistic was less than the critical value
+                    else:
+                        node.output = class_instance_max
 
                 # remove current node from frontier
                 # frontier_list.pop(0)

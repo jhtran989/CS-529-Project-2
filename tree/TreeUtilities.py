@@ -9,9 +9,6 @@ from Utilities import CLASS_NAME
 from pandas import DataFrame
 from toolz import valmap
 
-# Debug flags
-TREE_UTILITIES_DEBUG = True
-
 
 def print_data_stats(node: Node, data_df: DataFrame, data_parameters: DataParameters):
     print("-------------------------------------------------")
