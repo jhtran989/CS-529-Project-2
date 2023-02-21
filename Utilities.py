@@ -1,5 +1,6 @@
 import csv
 import pandas
+from pandas import DataFrame
 import numpy as np
 
 # Global Attributes
@@ -48,6 +49,28 @@ def parse_data_testing(filename):
 
     return data_df, attribute_names
 
+
+# FIXME: just for testing
+def get_df_row_count(data_df: DataFrame, column_name, column_instance):
+    """
+    value_counts() function of the Data Frame does NOT work if none of the rows have the attribute name
+
+    handles exception by setting count to 0
+
+    :param data_df:
+    :param column_name:
+    :param column_instance:
+    :return:
+    """
+
+    try:
+        count = data_df[column_name].value_counts()[column_instance]
+    except:
+        count = 0
+
+    return count
+
+
 if __name__ == "__main__":
     # data_df_training, output_df_training, attribute_names_training = \
     #     parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
@@ -91,5 +114,10 @@ if __name__ == "__main__":
 
     print("original")
     print(data_df_training.loc[0:14, "stalk-root"])
+
+    join_data_df = data_df_training[(data_df_training[CLASS_NAME] == "e") & (data_df_training["cap-shape"] == "x")]
+    print(join_data_df)
+
+    print(get_df_row_count(join_data_df, CLASS_NAME, "e"))
 
 
