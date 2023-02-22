@@ -1,3 +1,11 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from parameters.Parameters import DataParameters
+    from parameters.HyperParameters import HyperParameters
+
+from utilities.DebugFlags import PARSE_UTILITIES_DEBUG
+
 import csv
 import pandas
 from pandas import DataFrame
@@ -50,6 +58,24 @@ def parse_data_testing(filename):
     return data_df, attribute_names
 
 
+def split_training_validation(data_df_training_total: DataFrame,
+                              output_df_training_total: DataFrame,
+                              hyper_parameters: HyperParameters):
+    percent_training_validation = hyper_parameters.percent_training_validation
+
+    # FIXME: set random state to 0 for testing
+    data_df_validation = data_df_training_total.sample(frac=percent_training_validation, random_state=0)
+    data_df_training = data_df_training_total.drop(data_df_validation.index)
+
+    output_df_validation = output_df_training_total.loc[data_df_validation.index]
+    output_df_training = output_df_validation.drop(data_df_validation.index)
+
+    if PARSE_UTILITIES_DEBUG:
+        print(f"split data shape - training: {data_df_training.shape}, validation: {data_df_validation.shape}")
+
+    return data_df_training, output_df_training, data_df_validation, output_df_validation
+
+
 # FIXME: just for testing
 def get_df_row_count(data_df: DataFrame, column_name, column_instance):
     """
@@ -75,7 +101,7 @@ if __name__ == "__main__":
     # data_df_training, output_df_training, attribute_names_training = \
     #     parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
     data_df_training, output_df_training, attribute_names_training = \
-        parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training_small.csv")
+        parse_data_training(f"../2023-cs429529-project1-random-forests/agaricus-lepiota - training_small.csv")
 
     # print(attribute_names_training)
     # print(data_df_training)

@@ -5,26 +5,17 @@ if TYPE_CHECKING:
 
 import pandas as pd
 
-from DebugFlags import INFORMATION_GAIN_DEBUG, INFORMATION_GAIN_PRINT
+from utilities.DebugFlags import INFORMATION_GAIN_DEBUG, INFORMATION_GAIN_PRINT
 
 from abc import abstractmethod
-from enum import Enum, auto
 from math import log2, pow
 import numpy as np
 
-from Utilities import CLASS_NAME, MISSING_DATA_VALUE
-from tree.TreeUtilities import get_df_row_count, \
+from utilities.ParseUtilities import CLASS_NAME, MISSING_DATA_VALUE
+from utilities.TreeUtilities import get_df_row_count, \
     get_class_instance_partition_dict, \
     get_class_instance_partition_prop_dict
-from PrintUtilities import auto_str
-from decision.InformationGainUtilities import get_normalized_prob, get_uniform_prob
-
-
-@auto_str
-class InformationGainEnum(Enum):
-    ENTROPY = auto()
-    GINI_INDEX = auto()
-    MISCLASSIFICATION_ERROR = auto()
+from utilities.InformationGainUtilities import get_normalized_prob, get_uniform_prob, InformationGainEnum
 
 
 def InformationGainFactory(information_gain_method: InformationGainEnum, tree: Tree, node: Node):

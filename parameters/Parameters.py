@@ -4,8 +4,8 @@ import numpy as np
 import pandas
 from pandas import DataFrame
 
-from Utilities import CLASS_NAME, MISSING_DATA_VALUE
-from PrintUtilities import auto_str
+from utilities.ParseUtilities import CLASS_NAME, MISSING_DATA_VALUE
+from utilities.PrintUtilities import auto_str
 
 
 @auto_str
@@ -47,7 +47,8 @@ class DataParameters:
                                                                 np.where(unique_labels_array ==
                                                                          MISSING_DATA_VALUE))
 
-        return unique_labels_no_missing_array
+        # FIXME: just return a list instead of a numpy array
+        return list(unique_labels_no_missing_array)
 
     def get_random_attributes_max_num(self, attribute_visited_list: list, max_num_attributes_check):
         """

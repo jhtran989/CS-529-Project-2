@@ -1,24 +1,40 @@
-from Utilities \
-    import parse_data_training
+from utilities.ParseUtilities \
+    import parse_data_training, parse_data_testing, split_training_validation
 from parameters.Parameters import DataParameters
 # from tree.Tree import Node, Tree
 from parameters.HyperParameters import HyperParameters
-from decision.InformationGain import InformationGainEnum
+from utilities.InformationGainUtilities import InformationGainEnum
 from tree.RandomForest import RandomForest
-
-from Utilities import CLASS_NAME
-from tree.TreeUtilities import get_class_instance_partition_dict
-
-import pandas
 
 # Global variables
 MAIN_DEBUG = False
 
 
 if __name__ == "__main__":
+    hyper_parameters = HyperParameters(0.95,
+                                       0.05,
+                                       InformationGainEnum.GINI_INDEX,
+                                       5,
+                                       3,
+                                       5,
+                                       0.2)
+    # hyper_parameters = HyperParameters(0.90,
+    #                                    0.01,
+    #                                    InformationGainEnum.GINI_INDEX,
+    #                                    5,
+    #                                    1,
+    #                                    0.2)
+
     # training with a small subset first
-    data_df_training, output_df_training, attribute_names_list_training = \
-        parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training_small.csv")
+    data_df_training_total, output_df_training_total, attribute_names_list_training = \
+        parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training_medium.csv")
+
+    data_df_training, output_df_training, data_df_validation, output_df_validation = \
+        split_training_validation(data_df_training_total, output_df_training_total, hyper_parameters)
+
+    data_df_testing, _ = \
+        parse_data_testing(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training_small.csv")
+
 
     # training with a medium subset next
     # data_df_training, output_df_training, attribute_names_list_training = \
@@ -28,20 +44,12 @@ if __name__ == "__main__":
     # data_df_training, output_df_training, attribute_names_list_training = \
     #     parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
 
-    hyper_parameters = HyperParameters(0.95,
-                                       0.05,
-                                       InformationGainEnum.GINI_INDEX,
-                                       5,
-                                       3,
-                                       0.2)
-    # hyper_parameters = HyperParameters(0.90,
-    #                                    0.01,
-    #                                    InformationGainEnum.GINI_INDEX,
-    #                                    5,
-    #                                    1,
-    #                                    0.2)
-
-    data_parameters = DataParameters(data_df_training, output_df_training, attribute_names_list_training)
+    # FIXME:
+    # the data_df_training_total and output_df_training_total ONLY used to find the class instance list and attribute
+    # list
+    data_parameters = DataParameters(data_df_training_total,
+                                     output_df_training_total,
+                                     attribute_names_list_training)
 
     # if MAIN_DEBUG:
     #     print("data:")
@@ -51,7 +59,11 @@ if __name__ == "__main__":
     #     print(get_class_instance_partition_dict(data_parameters, data_df_training))
 
     # Generate Random Forest
-    random_forest = RandomForest(data_df_training, data_parameters, hyper_parameters)
+    random_forest = RandomForest(data_df_training,
+                                 data_df_validation,
+                                 data_df_testing,
+                                 data_parameters,
+                                 hyper_parameters)
     random_forest.generate_random_forest()
     random_forest.check_training_data()
 

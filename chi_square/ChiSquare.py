@@ -1,17 +1,15 @@
 from __future__ import annotations
-
-import math
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from tree.Tree import Tree, Node
-    from parameters.Parameters import DataParameters
 
-from tree.TreeUtilities import get_df_row_count, get_class_instance_partition_prop_dict
-from Utilities import CLASS_NAME
+from utilities.TreeUtilities import get_df_row_count, get_class_instance_partition_prop_dict
+from utilities.ParseUtilities import CLASS_NAME
 
+import math
 from math import pow
-from scipy.stats import chi2, chisquare as chisquare_scipy
+from scipy.stats import chi2
 
 
 class ChiSquare:
@@ -74,9 +72,10 @@ class ChiSquare:
                            attribute_values_class_total_dict[attribute_value]
 
                 # FIXME: case where expected is 0...
-                # FIXME: using the
+                # FIXME: actually, set the critical value to some big number (infinity) and break
                 if expected == 0:
-                    pass
+                    critical_value = math.inf
+                    break
                 else:
                     critical_value += \
                         pow(actual - expected, 2) / expected
@@ -95,11 +94,12 @@ if __name__ == "__main__":
     # print(chisquare_scipy([16, 18, 16, 14, 12, 12, 16, 18, 16, 14, 12, 12, 1],
     #                       f_exp=[16, 16, 16, 16, 16, 8, 16, 18, 16, 14, 12, 12, 0]))
     # print(c([1, 1], f_exp=[0, 1]))
-    print(math.inf + 1)
+    print(math.inf > 10)
 
     a = {}
     b = [1, 1]
-    b[:] += 1
-    print(b)
+
+
+
 
 

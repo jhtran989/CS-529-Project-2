@@ -6,15 +6,17 @@ if TYPE_CHECKING:
     from parameters.HyperParameters import HyperParameters
 
 from decision.InformationGain import InformationGainFactory
-from tree.TreeUtilities import print_data_stats, get_class_instance_partition_dict
+from utilities.TreeUtilities import print_data_stats, get_class_instance_partition_dict
 from chi_square.ChiSquare import ChiSquare
 
 import pandas
 from pandas import DataFrame
+import random
 
-from PrintUtilities import auto_str
+from utilities.ParseUtilities import MISSING_DATA_VALUE
+from utilities.PrintUtilities import auto_str
 
-from DebugFlags import TREE_DEBUG, TREE_PRINT
+from utilities.DebugFlags import TREE_DEBUG, TREE_PRINT
 
 
 @auto_str
@@ -57,10 +59,12 @@ class Tree:
     def __init__(self,
                  root: Node,
                  hyper_parameters: HyperParameters,
-                 data_parameters: DataParameters):
+                 data_parameters: DataParameters,
+                 validation_data_df: DataFrame):
         self.root = root
         self.hyper_parameters = hyper_parameters
         self.data_parameters = data_parameters
+        self.validation_data_df = validation_data_df
 
         # TODO: set other parameters
         self.frontier_list = [root]
@@ -92,7 +96,17 @@ class Tree:
 
         while current_output is None:
             # get the next node by following the tree
-            current_node = current_node.children_dict[data_row_df[current_attribute][0]]
+            # FIXME: if a split with a MISSING DATA VALUE in the row is encountered, get a random value from the
+            #  list of all possible attribute values
+            current_attribute_value = data_row_df[current_attribute][0]
+            if current_attribute_value == MISSING_DATA_VALUE:
+                current_attribute_dict = self.data_parameters.attribute_dict
+                current_attribute_value_list = current_attribute_dict[current_attribute]
+
+                # important - sample returns a list so need to index into list
+                current_attribute_value = random.sample(current_attribute_value_list, k=1)[0]
+
+            current_node = current_node.children_dict[current_attribute_value]
 
             # update the attributes and corresponding output
             current_attribute = current_node.attribute
@@ -223,11 +237,19 @@ class Tree:
 
                 class_max_prop = class_instance_partition_dict[class_instance_max] / current_training_data_rows
 
+                # TODO: need to check validation - just decrease max depth by 1 for testing
+                max_depth_cutoff = self.hyper_parameters.max_depth_cutoff
+                current_tree_level = node.tree_level
+
                 if class_max_prop >= self.hyper_parameters.class_instance_cutoff_ratio:
                     if TREE_DEBUG:
                         print("cutoff reached...")
 
                     node.attribute = "Class Majority Cutoff"
+                    node.output = class_instance_max
+
+                elif current_tree_level >= max_depth_cutoff:
+                    node.attribute = "Max Depth Cutoff"
                     node.output = class_instance_max
 
                 # find the attribute with the highest information gain for the split and add nodes for each of the

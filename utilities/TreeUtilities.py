@@ -4,7 +4,7 @@ if TYPE_CHECKING:
     from parameters.Parameters import DataParameters
     from tree.Tree import Node
 
-from Utilities import CLASS_NAME
+from utilities.ParseUtilities import CLASS_NAME
 
 from pandas import DataFrame
 from toolz import valmap
