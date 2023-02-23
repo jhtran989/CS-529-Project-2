@@ -14,6 +14,7 @@ MAIN_PRINT = True
 
 if __name__ == "__main__":
     chi_square_alpha_list = [0.99, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01]
+    # chi_square_alpha_list = [0.05, 0.01]
     # chi_square_alpha_list = [0.01]
 
     # training the entire training set
@@ -30,6 +31,7 @@ if __name__ == "__main__":
     # 21 random forest, a total of 210 trees)
 
     information_gain_list = InformationGainEnum
+    # information_gain_list = [InformationGainEnum.ENTROPY, InformationGainEnum.GINI_INDEX]
     # information_gain_list = [InformationGainEnum.ENTROPY]
 
     for chi_square_alpha in chi_square_alpha_list:
@@ -40,14 +42,14 @@ if __name__ == "__main__":
                 print(f"information gain method: {str(information_gain_method)}")
                 print(f"")
 
-            hyper_parameters = HyperParameters(0.95,
+            hyper_parameters = HyperParameters(0.99,
                                                chi_square_alpha,
                                                information_gain_method,
-                                               23,
+                                               5,
                                                10,
                                                5,
-                                               200,
-                                               0.2)
+                                               1000,
+                                               0.5)
 
             data_df_training, output_df_training, data_df_validation, output_df_validation = \
                 split_training_validation(data_df_training_total, output_df_training_total, hyper_parameters)
@@ -66,13 +68,16 @@ if __name__ == "__main__":
                                          hyper_parameters)
             random_forest.generate_random_forest()
             # random_forest.check_training_data()
-            random_forest.check_training_data(print_stats=True)
+            random_forest.check_training_data(print_stats=False)
+
+            # FIXME: itterrows keeps the original index (skips all over...USE DICT)
 
             big_random_forest_tree_list.extend(random_forest.get_tree_list())
 
     # find the success of ALL the trees combined (above)
     # big_random_forest = RandomForest(_, _, data_df_testing, _, _)
-    big_random_forest = RandomForest(data_df_training_total, _, data_df_testing, _, _)
+    # big_random_forest = RandomForest(data_df_training_total, _, data_df_testing, _, _)
+    big_random_forest = RandomForest(data_df_training, _, data_df_testing, _, _)
     big_random_forest.set_tree_list(big_random_forest_tree_list)
 
     if MAIN_PRINT:

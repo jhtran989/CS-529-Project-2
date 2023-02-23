@@ -15,20 +15,23 @@ def check_tree_data_accuracy(data_df: DataFrame, current_tree: Tree, print_stats
     num_success = 0
     total = 0
     tree = current_tree
-    output_list = []
+    output_dict = {}
     tree_success_rate = 0
 
     # iterrows automatically does enumeration
-    for index, row in data_df.iterrows():
+    for data_index, data_row in data_df.iterrows():
         prediction_dict = {}
 
         if ACCURACY_UTILITIES_DEBUG:
             print(f"--------------------------")
-            print(f"row index: {index}")
+            print(f"row index: {data_index}")
             print(f"--------------------------")
 
-        output = tree.get_output(row)
-        output_list.append(output)
+        output = tree.get_output(data_row)
+
+        size_before = len(output_dict)
+        output_dict[data_index] = output
+        size_after = len(output_dict)
 
         if ACCURACY_UTILITIES_DEBUG:
             print(f"--------------------------")
@@ -36,7 +39,7 @@ def check_tree_data_accuracy(data_df: DataFrame, current_tree: Tree, print_stats
 
         if check_output:
             total += 1
-            if output == row[CLASS_NAME]:
+            if output == data_row[CLASS_NAME]:
                 if ACCURACY_UTILITIES_DEBUG:
                     print("SUCCESS")
                     print(f"--------------------------")
@@ -46,6 +49,9 @@ def check_tree_data_accuracy(data_df: DataFrame, current_tree: Tree, print_stats
                 if ACCURACY_UTILITIES_DEBUG:
                     print("FAIL")
                     print(f"--------------------------")
+
+    # print(f"output list size: {len(output_dict)}")
+    # print(f"size of data: {data_df.shape}")
 
     if check_output:
         tree_success_rate = num_success / total
@@ -59,4 +65,4 @@ def check_tree_data_accuracy(data_df: DataFrame, current_tree: Tree, print_stats
             tree.print_stats()
 
 
-    return tree_success_rate, output_list
+    return tree_success_rate, output_dict

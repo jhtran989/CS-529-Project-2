@@ -3,6 +3,9 @@ from typing import TYPE_CHECKING
 
 import pandas
 
+# FIXME
+from utilities.TreeUtilities import get_class_instance_partition_prop_dict
+
 if TYPE_CHECKING:
     from parameters.Parameters import DataParameters
     from parameters.HyperParameters import HyperParameters
@@ -11,10 +14,26 @@ from tree.Tree import Node, Tree
 
 from pandas import DataFrame
 import random
+from math import log2
 
 from utilities.ParseUtilities import ID_NAME, CLASS_NAME
-from utilities.DebugFlags import RANDOM_FOREST_DEBUG, RANDOM_FOREST_PRINT, RANDOM_FOREST_TREE_PROGRESS
+from utilities.DebugFlags import RANDOM_FOREST_DEBUG, RANDOM_FOREST_PRINT, RANDOM_FOREST_TREE_PROGRESS, RANDOM_FOREST_FIND
 from utilities.AccuracyUtilities import check_tree_data_accuracy
+
+
+def calculate_measure_partial_p(prop_key_value):
+    prop = prop_key_value[1]
+
+    if prop == 0:
+        return 0
+
+    return -(prop * log2(prop))
+
+
+def calculate_measure_total(class_instances_dict):
+    return sum(map(
+        lambda x: calculate_measure_partial_p(x),
+        get_class_instance_partition_prop_dict(class_instances_dict).items()))
 
 
 class RandomForest:
@@ -86,6 +105,9 @@ class RandomForest:
     def check_random_forest_data_accuracy(self, data_df, print_stats=True, check_output=True):
         tree_list = self.tree_list
 
+        # beginning index to create the id column
+        beginning_index = 1
+
         num_success = 0
         total = 0
         tree_success_list = []
@@ -104,20 +126,31 @@ class RandomForest:
                 print(f"tree index: {tree_index}")
                 print(f"--------------------------------------------------------------")
 
-            _, tree_output_list = check_tree_data_accuracy(data_df,
+            _, tree_output_dict = check_tree_data_accuracy(data_df,
                                                            tree,
                                                            print_stats=print_stats,
                                                            check_output=check_output)
 
+            if RANDOM_FOREST_TREE_PROGRESS:
+                print(f"shape of output list: {len(tree_output_dict)}")
+                print(f"shape of data: {data_df.shape}")
+
             for data_index, data_row in data_df.iterrows():
+                # if RANDOM_FOREST_TREE_PROGRESS:
+                #     print(f"-------------")
+                #     print(f"data index: {data_index}")
+                #     print(f"-------------")
+
                 # only add a dict for each row -- initially on the first tree
                 if tree_index == 0:
                     prediction_rows_nested_dict[data_index] = {}
 
                 # print(f"data index: {data_index}")
 
+                # assert data_index < len(tree_output_dict)
+
                 current_prediction_dict = prediction_rows_nested_dict[data_index]
-                output = tree_output_list[tree_index]
+                output = tree_output_dict[data_index]
 
                 if output in current_prediction_dict.keys():
                     current_prediction_dict[output] += 1
@@ -128,12 +161,20 @@ class RandomForest:
             current_prediction_dict = prediction_rows_nested_dict[data_index]
             majority_output = max(current_prediction_dict, key=current_prediction_dict.get)
 
-            id_list.append(data_index)
+            # FIXME:
+            entropy = calculate_measure_total(current_prediction_dict)
+
+            if RANDOM_FOREST_FIND:
+                if entropy > 0.90:
+                    print(f"...data row: {data_index + beginning_index}")
+
+            id_list.append(data_index + beginning_index)
             majority_prediction_list.append(majority_output)
 
             if RANDOM_FOREST_DEBUG:
                 print(f"--------------------------")
                 print(f"data row index: {data_index}")
+                print(f"current prediction dict: {current_prediction_dict}")
 
             if check_output:
                 total += 1
