@@ -52,3 +52,16 @@ class ValidationCheck:
                     print("validation FAILED")
 
         return validation_success
+
+if __name__ == "__main__":
+    b = [1, 2, 2]
+    for _ in range(4):
+        a = b.copy()
+        a.append(2)
+
+    print(f"{b}")
+
+    c = set(b)
+
+    print(f"{c}")
+    print(f"{b}")

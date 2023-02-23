@@ -14,7 +14,7 @@ MAIN_PRINT = True
 
 if __name__ == "__main__":
     chi_square_alpha_list = [0.99, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01]
-    chi_square_alpha_list = [0.01]
+    # chi_square_alpha_list = [0.01]
 
     # training the entire training set
     data_df_training_total, output_df_training_total, attribute_names_list_training = \
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     # 21 random forest, a total of 210 trees)
 
     information_gain_list = InformationGainEnum
-    information_gain_list = [InformationGainEnum.ENTROPY]
+    # information_gain_list = [InformationGainEnum.ENTROPY]
 
     for chi_square_alpha in chi_square_alpha_list:
         for information_gain_method in information_gain_list:
@@ -45,7 +45,7 @@ if __name__ == "__main__":
                                                information_gain_method,
                                                23,
                                                10,
-                                               3,
+                                               5,
                                                200,
                                                0.2)
 

@@ -71,12 +71,13 @@ class RandomForest:
             root = Node(current_training_data_df)
 
             test_tree = Tree(root, hyper_parameters, data_parameters, validation_data_df)
+
+            # FIXME:
+            # print(f"BEFORE attribute visited list: {test_tree.root.attribute_visited_list}")
+
             # test_tree.grow_level()
             test_tree.build_tree()
             tree_list.append(test_tree)
-
-            # FIXME:
-            print(f"attribute visited list: {test_tree.root.attribute_visited_list}")
 
             if RANDOM_FOREST_TREE_PROGRESS:
                 print(f"tree index {tree_index} DONE")

@@ -210,11 +210,15 @@ class InformationGain:
             print(f"-------------------------------------------------------------------------------------------")
             print(f"class instances: {node.class_instance_partition_dict}")
             print(f"measure parent: {measure_parent}")
-            print(f"measure attribute: {measure_attribute}")
+            print(f"measure attribute: "
+                  f"{dict(sorted(measure_attribute.items(), key=lambda item: item[1], reverse=True))}")
             print(f"-------------------------------------------------------------------")
+            print(f"parent attribute: {node.parentAttribute}")
+            print(f"parent attribute: {node.parentAttributeInstance}")
             print(f"chosen attribute: {chosen_attribute}")
             print(f"attribute values dict: {attribute_instances_count_dict}")
             print(f"class partition: {class_partition_attribute_values_dict}")
+            print(f"attribute visited list: {node.attribute_visited_list}")
             print(f"-------------------------------------------------------------------------------------------")
 
         return chosen_attribute

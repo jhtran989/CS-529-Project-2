@@ -28,9 +28,9 @@ class Node:
                  parentAttribute=None,
                  parentAttributeInstance=None,
                  attribute=None,
-                 class_instance_partition_dict: dict = {},
-                 children_dict: dict = {},
-                 attribute_visited_list: list = [],
+                 class_instance_partition_dict: dict = None,
+                 children_dict: dict = None,
+                 attribute_visited_list: list = None,
                  tree_level=0,
                  output=None,
                  cached_output=None):
@@ -39,9 +39,23 @@ class Node:
         self.parentAttribute = parentAttribute
         self.parentAttributeInstance = parentAttributeInstance
         self.attribute = attribute
-        self.class_instance_partition_dict = class_instance_partition_dict
-        self.children_dict = children_dict
-        self.attribute_visited_list = attribute_visited_list
+
+        # have to manually test for None for each
+        if class_instance_partition_dict is not None:
+            self.class_instance_partition_dict = class_instance_partition_dict
+        else:
+            self.class_instance_partition_dict = {}
+
+        if children_dict is not None:
+            self.children_dict = children_dict
+        else:
+            self.children_dict = {}
+
+        if attribute_visited_list is not None:
+            self.attribute_visited_list = attribute_visited_list
+        else:
+            self.attribute_visited_list = []
+
         self.tree_level = tree_level
         self.output = output
         self.cached_output = cached_output
@@ -169,10 +183,13 @@ class Tree:
             # SOLVED: need to check for a clear split (also use cut-off) -> remove data with attribute value
 
             # SOLVED: error dropping rows -> need .index
+            # FIXME: instead of dropping rows, use them exclusively for the new data
+            # new_current_training_data = \
+            #     current_training_data.drop(current_training_data[
+            #                                    current_training_data[
+            #                                        attribute] == attribute_value_to_node].index, axis=0)
             new_current_training_data = \
-                current_training_data.drop(current_training_data[
-                                               current_training_data[
-                                                   attribute] == attribute_value_to_node].index, axis=0)
+                current_training_data[current_training_data[attribute] == attribute_value_to_node]
 
             # if TREE_DEBUG:
             #     print("data to drop:")
@@ -189,6 +206,9 @@ class Tree:
             new_class_instance_partition_dict = get_class_instance_partition_dict(
                 self.data_parameters,
                 new_current_training_data)
+
+            # FIXME
+            # print(f"IN NODE new_class_instance_partition_dict: {new_class_instance_partition_dict}")
 
             # FIXME: need to make a copy of the list
             new_attribute_visited_list = node.attribute_visited_list.copy()
@@ -213,7 +233,8 @@ class Tree:
             children_dict[attribute_value_to_node] = Node(new_current_training_data, parentNode=node,
                                                           parentAttribute=attribute,
                                                           parentAttributeInstance=attribute_value_to_node,
-                                                          class_instance_partition_dict=new_class_instance_partition_dict,
+                                                          class_instance_partition_dict=
+                                                          new_class_instance_partition_dict,
                                                           attribute_visited_list=new_attribute_visited_list,
                                                           tree_level=new_tree_level,
                                                           output=temporary_output,
@@ -248,6 +269,10 @@ class Tree:
                 print_data_stats(node, current_training_data, data_parameters)
 
             class_instance_partition_dict = node.class_instance_partition_dict
+
+            # FIXME:
+            # print(f"class_instance_partition_dict: {class_instance_partition_dict}")
+
             class_instance_max = max(class_instance_partition_dict, key=class_instance_partition_dict.get)
 
             # end the termination and set the output same as the PARENT (since that produced the better results
@@ -319,7 +344,9 @@ class Tree:
                         # # TODO: update the frontier nodes with new data and updating node parameters
                         # # FIXME: move to AFTER validation for the children dict (output is still None...)
                         node.attribute = chosen_attribute
-                        node.attribute_visited_list.append(chosen_attribute)
+
+                        # FIXME: done twice...other in get_children_dict
+                        # node.attribute_visited_list.append(chosen_attribute)
 
                         # FIXME: during validation, one of the children with an INCOMPLETE path may not have an
                         #  output...
