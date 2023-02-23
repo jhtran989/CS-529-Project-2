@@ -64,7 +64,7 @@ def split_training_validation(data_df_training_total: DataFrame,
     percent_training_validation = hyper_parameters.percent_training_validation
 
     # FIXME: set random state to 0 for testing
-    data_df_validation = data_df_training_total.sample(frac=percent_training_validation, random_state=0)
+    data_df_validation = data_df_training_total.sample(frac=percent_training_validation)
     data_df_training = data_df_training_total.drop(data_df_validation.index)
 
     output_df_validation = output_df_training_total.loc[data_df_validation.index]

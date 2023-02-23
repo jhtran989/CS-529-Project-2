@@ -21,3 +21,8 @@ ACCURACY_UTILITIES_PRINT = True
 
 # Parse Utilities (utilities module)
 PARSE_UTILITIES_DEBUG = True
+
+# ValidationCheck (validation module)
+VALIDATION_PRINT = True
+VALIDATION_DEBUG = False
+VALIDATION_SWITCH = True

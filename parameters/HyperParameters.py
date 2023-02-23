@@ -12,6 +12,7 @@ class HyperParameters:
                  max_num_attributes_check,
                  num_trees,
                  max_depth_cutoff,
+                 validation_cycle,
                  percent_training_validation):
         self.class_instance_cutoff_ratio = class_instance_cutoff_ratio
         self.chi_square_alpha = chi_square_alpha
@@ -19,4 +20,5 @@ class HyperParameters:
         self.max_num_attributes_check = max_num_attributes_check
         self.num_trees = num_trees
         self.max_depth_cutoff = max_depth_cutoff
+        self.validation_cycle = validation_cycle
         self.percent_training_validation = percent_training_validation

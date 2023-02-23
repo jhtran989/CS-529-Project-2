@@ -17,6 +17,7 @@ if __name__ == "__main__":
                                        5,
                                        3,
                                        5,
+                                       200,
                                        0.2)
     # hyper_parameters = HyperParameters(0.90,
     #                                    0.01,

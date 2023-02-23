@@ -5,13 +5,13 @@ if TYPE_CHECKING:
     from parameters.HyperParameters import HyperParameters
     from tree.Tree import Tree
 
-from utilities.DebugFlags import ACCURACY_UTILITIES_DEBUG, ACCURACY_UTILITIES_PRINT
+from utilities.DebugFlags import ACCURACY_UTILITIES_DEBUG, ACCURACY_UTILITIES_PRINT, VALIDATION_DEBUG, VALIDATION_SWITCH
 from utilities.ParseUtilities import CLASS_NAME
 
 from pandas import DataFrame
 
 
-def check_tree_data_accuracy(data_df: DataFrame, current_tree: Tree):
+def check_tree_data_accuracy(data_df: DataFrame, current_tree: Tree, print_stats=True):
     num_success = 0
     total = 0
     tree = current_tree
@@ -47,12 +47,13 @@ def check_tree_data_accuracy(data_df: DataFrame, current_tree: Tree):
 
     tree_success_rate = num_success / total
 
-    if ACCURACY_UTILITIES_PRINT:
+    if print_stats:
         print(f"--------------------------------------------------------------")
         print(f"success rate: {tree_success_rate}")
         print(f"---------------------------------")
         print(f"Final tree stats")
         print(f"--------------------------------------------------------------")
         tree.print_stats()
+
 
     return tree_success_rate, output_list

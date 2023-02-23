@@ -43,6 +43,7 @@ class RandomForest:
             #     print(f"random forest - training data shape: {training_data_df.shape}")
 
             if RANDOM_FOREST_PRINT:
+                print(f"------------------------------------------")
                 print(f"tree index {tree_index}...")
 
             root = Node(training_data_df)
@@ -54,6 +55,7 @@ class RandomForest:
 
             if RANDOM_FOREST_PRINT:
                 print(f"tree index {tree_index} DONE")
+                print(f"------------------------------------------")
 
     def check_random_forest_data_accuracy(self, data_df):
         tree_list = self.tree_list
