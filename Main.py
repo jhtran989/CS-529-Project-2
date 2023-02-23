@@ -1,130 +1,84 @@
-from utilities.ParseUtilities \
-    import parse_data_training, parse_data_testing, split_training_validation
 from parameters.Parameters import DataParameters
 # from tree.Tree import Node, Tree
 from parameters.HyperParameters import HyperParameters
-from utilities.InformationGainUtilities import InformationGainEnum
 from tree.RandomForest import RandomForest
+
+from utilities.ParseUtilities \
+    import parse_data_training, parse_data_testing, split_training_validation
+from utilities.InformationGainUtilities import InformationGainEnum
 
 # Global variables
 MAIN_DEBUG = False
+MAIN_PRINT = True
 
 
 if __name__ == "__main__":
-    hyper_parameters = HyperParameters(0.95,
-                                       0.05,
-                                       InformationGainEnum.GINI_INDEX,
-                                       5,
-                                       10,
-                                       5,
-                                       200,
-                                       0.2)
-    # hyper_parameters = HyperParameters(0.90,
-    #                                    0.01,
-    #                                    InformationGainEnum.GINI_INDEX,
-    #                                    5,
-    #                                    1,
-    #                                    0.2)
+    chi_square_alpha_list = [0.99, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01]
+    # chi_square_alpha_list = [0.01]
 
-    # training with a small subset first
+    # training the entire training set
     data_df_training_total, output_df_training_total, attribute_names_list_training = \
         parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
 
-    data_df_training, output_df_training, data_df_validation, output_df_validation = \
-        split_training_validation(data_df_training_total, output_df_training_total, hyper_parameters)
-
     data_df_testing, _ = \
-        parse_data_testing(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training_small.csv")
+        parse_data_testing(f"2023-cs429529-project1-random-forests/agaricus-lepiota - testing.csv")
+
+    big_random_forest_tree_list = []
+
+    # create a random forest (defined in the hyperparameters given below) with every possible pair of chi square
+    # alphas and information gain method (given in the spec -- 7 alphas and 3 information gain methods for a total of
+    # 21 random forest, a total of 210 trees)
+    for chi_square_alpha in chi_square_alpha_list:
+        for information_gain_method in InformationGainEnum:
+            if MAIN_PRINT:
+                print(f"-----------------------------------------------------------------")
+                print(f"chi square alpha: {chi_square_alpha}")
+                print(f"information gain method: {str(information_gain_method)}")
+                print(f"")
+
+            hyper_parameters = HyperParameters(0.95,
+                                               chi_square_alpha,
+                                               information_gain_method,
+                                               5,
+                                               10,
+                                               5,
+                                               200,
+                                               0.2)
+
+            data_df_training, output_df_training, data_df_validation, output_df_validation = \
+                split_training_validation(data_df_training_total, output_df_training_total, hyper_parameters)
+
+            # the data_df_training_total and output_df_training_total ONLY used to find the class instance list and attribute
+            # list
+            data_parameters = DataParameters(data_df_training_total,
+                                             output_df_training_total,
+                                             attribute_names_list_training)
+
+            # Generate Random Forest
+            random_forest = RandomForest(data_df_training,
+                                         data_df_validation,
+                                         data_df_testing,
+                                         data_parameters,
+                                         hyper_parameters)
+            random_forest.generate_random_forest()
+            # random_forest.check_training_data()
+            random_forest.check_training_data(print_stats=False)
+
+            big_random_forest_tree_list.extend(random_forest.get_tree_list())
+
+    # find the success of ALL the trees combined (above)
+    # big_random_forest = RandomForest(_, _, data_df_testing, _, _)
+    big_random_forest = RandomForest(data_df_training_total, _, data_df_testing, _, _)
+    big_random_forest.set_tree_list(big_random_forest_tree_list)
+
+    if MAIN_PRINT:
+        print(f"-------------------------------------")
+        print(f"Big Random Forest")
+        print(f"-------------------------------------")
+
+    big_random_forest.check_training_data(print_stats=False)
 
 
-    # training with a medium subset next
-    # data_df_training, output_df_training, attribute_names_list_training = \
-    #     parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training_medium.csv")
-
-    # actual training set
-    # data_df_training, output_df_training, attribute_names_list_training = \
-    #     parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
-
-    # FIXME:
-    # the data_df_training_total and output_df_training_total ONLY used to find the class instance list and attribute
-    # list
-    data_parameters = DataParameters(data_df_training_total,
-                                     output_df_training_total,
-                                     attribute_names_list_training)
-
-    # if MAIN_DEBUG:
-    #     print("data:")
-    #     print(data_df_training)
-    #     print(data_parameters.attribute_dict)
-    #     print(data_parameters.class_instance_list)
-    #     print(get_class_instance_partition_dict(data_parameters, data_df_training))
-
-    # Generate Random Forest
-    random_forest = RandomForest(data_df_training,
-                                 data_df_validation,
-                                 data_df_testing,
-                                 data_parameters,
-                                 hyper_parameters)
-    random_forest.generate_random_forest()
-    random_forest.check_training_data()
-
-    # tree_list = []
-    # for _ in range(hyper_parameters.num_trees):
-    #     root = Node(data_df_training)
-    #
-    #     test_tree = Tree(root, hyper_parameters, data_parameters)
-    #     # test_tree.grow_level()
-    #     test_tree.build_tree()
-    #     tree_list.append(test_tree)
-    #
-    # # print(str(test_tree))
-    # # FIXME: test output of tree
-    #
-    # num_success = 0
-    # total = 0
-    # # iterrows automatically does enumeration
-    # for index, row in data_df_training.iterrows():
-    #     prediction_dict = {}
-    #
-    #     print(f"row index: {index}")
-    #
-    #     for tree_index, tree in enumerate(tree_list):
-    #         # print(f"row:")
-    #         # print(row)
-    #
-    #         output = tree.get_output(row)
-    #
-    #         print(f"tree index: {tree_index}")
-    #         print(f"prediction: {output}")
-    #
-    #         if output in prediction_dict.keys():
-    #             prediction_dict[output] += 1
-    #         else:
-    #             prediction_dict[output] = 1
-    #
-    #     majority_output = max(prediction_dict, key=prediction_dict.get)
-    #
-    #     print(f"majority output: {majority_output}")
-    #     print(f"actual: {row[CLASS_NAME]}")
-    #
-    #     total += 1
-    #     if majority_output == row[CLASS_NAME]:
-    #         print("SUCCESS")
-    #         num_success += 1
-    #     else:
-    #         print("FAIL")
-    #
-    # print(f"---------------------------------")
-    # print(f"---------------------------------")
-    # print(f"success rate: {num_success / total}")
-    #
-    # print(f"---------------------------------")
-    # print(f"---------------------------------")
-    # print(f"Final tree stats")
-    # for tree_index, tree in enumerate(tree_list):
-    #     print(f"---------------------------------")
-    #     print(f"tree index: {tree_index}")
-    #     tree.print_stats()
 
 
 

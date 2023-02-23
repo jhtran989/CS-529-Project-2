@@ -72,8 +72,10 @@ class DataParameters:
         num_remaining_attributes = len(remaining_attributes_list)
 
         # need to subtract 1 - INCLUSIVE
+        # FIXME: need to add 1 so randint(1, 1 + 1) would return 1 for just one remaining attribute
+        # FIXME: actually, don't need extra modification...
         num_attributes_check = min(num_remaining_attributes, max_num_attributes_check)
-        rand_num = random.randint(1, num_attributes_check - 1)
+        rand_num = random.randint(1, num_attributes_check)
 
         # FIXME: the set_diff should NOT be empty...
         assert (num_remaining_attributes > 0)
