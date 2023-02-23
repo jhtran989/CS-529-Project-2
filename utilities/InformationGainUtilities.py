@@ -30,6 +30,9 @@ class InformationGainEnum(Enum):
     GINI_INDEX = auto()
     MISCLASSIFICATION_ERROR = auto()
 
+    def __str__(self):
+        return self.name
+
 def get_normalized_prob(attribute_instances_count_dict: dict, total_non_missing_data_entries):
     attribute_instances_count_values = attribute_instances_count_dict.values()
 

@@ -15,7 +15,7 @@ if __name__ == "__main__":
                                        0.05,
                                        InformationGainEnum.GINI_INDEX,
                                        5,
-                                       3,
+                                       10,
                                        5,
                                        200,
                                        0.2)
@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     # training with a small subset first
     data_df_training_total, output_df_training_total, attribute_names_list_training = \
-        parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training_medium.csv")
+        parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
 
     data_df_training, output_df_training, data_df_validation, output_df_validation = \
         split_training_validation(data_df_training_total, output_df_training_total, hyper_parameters)

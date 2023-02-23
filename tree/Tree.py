@@ -91,7 +91,13 @@ class Tree:
         self.previous_validation_accuracy = 0
 
     def print_stats(self):
+        hyper_parameters = self.hyper_parameters
+        information_gain_method = hyper_parameters.information_gain_method
+        chi_square_alpha = hyper_parameters.chi_square_alpha
+
         print(f"top level attribute: {self.root.attribute}")
+        print(f"information gain method: {str(information_gain_method)}")
+        print(f"chi square alpha: {chi_square_alpha}")
         print(f"sum of levels: {self.sum_levels}")
         print(f"max depth: {self.max_depth}")
         print(f"average_depth: {self.average_depth}")
@@ -365,10 +371,10 @@ class Tree:
                     # FIXME: reduce max depth as a simple condition for now (remember to take max so the depth
                     #  is at least 1)
                     # SOLVED: actually, just do an early termination of the tree if this happens...
-                    # max_depth_cutoff = hyper_parameters.max_depth_cutoff
-                    # hyper_parameters.max_depth_cutoff = max(1, max_depth_cutoff - 1)
-                    hyper_parameters.max_depth_cutoff = 1
-                    validation_check.end_termination = True
+                    max_depth_cutoff = hyper_parameters.max_depth_cutoff
+                    hyper_parameters.max_depth_cutoff = max(1, max_depth_cutoff - 1)
+                    # hyper_parameters.max_depth_cutoff = 1
+                    # validation_check.end_termination = True
 
                     # node.attribute = "Validation Fail"
                     # node.output = class_instance_max

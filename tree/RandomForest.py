@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 from tree.Tree import Node, Tree
 
 from pandas import DataFrame
+import random
 
 from utilities.ParseUtilities import CLASS_NAME
 from utilities.DebugFlags import RANDOM_FOREST_DEBUG, RANDOM_FOREST_PRINT
@@ -38,15 +39,26 @@ class RandomForest:
 
         # tree_list = []
         tree_list = self.tree_list
-        for tree_index in range(hyper_parameters.num_trees):
+        num_trees = hyper_parameters.num_trees
+
+        training_num_rows, _ = training_data_df.shape
+        bootstrap_num_rows = int(training_num_rows / num_trees)
+        bootstrap_fraction = 1 / num_trees
+
+        for tree_index in range(num_trees):
             # if RANDOM_FOREST_PRINT:
             #     print(f"random forest - training data shape: {training_data_df.shape}")
+
+            # TODO: bootstrap the training data based on number of trees
+            current_training_data_df = training_data_df.sample(frac=bootstrap_fraction)
 
             if RANDOM_FOREST_PRINT:
                 print(f"------------------------------------------")
                 print(f"tree index {tree_index}...")
+                print(f"bootstrap num data rows: {bootstrap_num_rows}")
+                print(f"bootstrap fraction: {bootstrap_fraction}")
 
-            root = Node(training_data_df)
+            root = Node(current_training_data_df)
 
             test_tree = Tree(root, hyper_parameters, data_parameters, validation_data_df)
             # test_tree.grow_level()
