@@ -1,5 +1,8 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+
+import pandas
+
 if TYPE_CHECKING:
     from parameters.Parameters import DataParameters
     from parameters.HyperParameters import HyperParameters
@@ -9,7 +12,7 @@ from tree.Tree import Node, Tree
 from pandas import DataFrame
 import random
 
-from utilities.ParseUtilities import CLASS_NAME
+from utilities.ParseUtilities import ID_NAME, CLASS_NAME
 from utilities.DebugFlags import RANDOM_FOREST_DEBUG, RANDOM_FOREST_PRINT, RANDOM_FOREST_TREE_PROGRESS
 from utilities.AccuracyUtilities import check_tree_data_accuracy
 
@@ -72,11 +75,14 @@ class RandomForest:
             test_tree.build_tree()
             tree_list.append(test_tree)
 
+            # FIXME:
+            print(f"attribute visited list: {test_tree.root.attribute_visited_list}")
+
             if RANDOM_FOREST_TREE_PROGRESS:
                 print(f"tree index {tree_index} DONE")
                 print(f"------------------------------------------")
 
-    def check_random_forest_data_accuracy(self, data_df, print_stats=True):
+    def check_random_forest_data_accuracy(self, data_df, print_stats=True, check_output=True):
         tree_list = self.tree_list
 
         num_success = 0
@@ -88,6 +94,8 @@ class RandomForest:
 
         # FIXME: used a nested dict -- iterrows() use the ID index (not from 0)
         prediction_rows_nested_dict = {}
+        id_list = []
+        majority_prediction_list = []
 
         for tree_index, tree in enumerate(tree_list):
             if RANDOM_FOREST_TREE_PROGRESS:
@@ -95,7 +103,10 @@ class RandomForest:
                 print(f"tree index: {tree_index}")
                 print(f"--------------------------------------------------------------")
 
-            tree_success_rate, tree_output_list = check_tree_data_accuracy(data_df, tree, print_stats=print_stats)
+            _, tree_output_list = check_tree_data_accuracy(data_df,
+                                                           tree,
+                                                           print_stats=print_stats,
+                                                           check_output=check_output)
 
             for data_index, data_row in data_df.iterrows():
                 # only add a dict for each row -- initially on the first tree
@@ -116,34 +127,71 @@ class RandomForest:
             current_prediction_dict = prediction_rows_nested_dict[data_index]
             majority_output = max(current_prediction_dict, key=current_prediction_dict.get)
 
+            id_list.append(data_index)
+            majority_prediction_list.append(majority_output)
+
             if RANDOM_FOREST_DEBUG:
                 print(f"--------------------------")
                 print(f"data row index: {data_index}")
 
-            total += 1
-            if majority_output == data_row[CLASS_NAME]:
-                if RANDOM_FOREST_DEBUG:
-                    print("SUCCESS")
-                    print(f"--------------------------")
+            if check_output:
+                total += 1
+                if majority_output == data_row[CLASS_NAME]:
+                    if RANDOM_FOREST_DEBUG:
+                        print("SUCCESS")
+                        print(f"--------------------------")
 
-                num_success += 1
-            else:
-                if RANDOM_FOREST_DEBUG:
-                    print("FAIL")
-                    print(f"--------------------------")
+                    num_success += 1
+                else:
+                    if RANDOM_FOREST_DEBUG:
+                        print("FAIL")
+                        print(f"--------------------------")
 
-        random_forest_success_rate = num_success / total
+        if check_output:
+            random_forest_success_rate = num_success / total
 
-        if RANDOM_FOREST_PRINT:
-            print(f"---------------------------------------------------------")
-            print(f"random forest success rate: {random_forest_success_rate}")
-            print(f"---------------------------------------------------------")
+            if RANDOM_FOREST_PRINT:
+                print(f"---------------------------------------------------------")
+                print(f"random forest success rate: {random_forest_success_rate}")
+                print(f"---------------------------------------------------------")
+
+        return id_list, majority_prediction_list
 
     def check_testing_data(self, print_stats=True):
-        self.check_random_forest_data_accuracy(self.testing_data_df, print_stats=print_stats)
+        """
+        Forgot we don't have the output for the test data...
+
+        :param print_stats:
+        :return:
+        """
+        _, _ = self.check_random_forest_data_accuracy(self.testing_data_df, print_stats=print_stats)
+
+    def get_random_forest_prediction(self):
+        print()
+
+    def write_output_file_testing_data(self, output_filename, print_stats=True):
+        testing_data_df = self.testing_data_df
+
+        fileoutput_data_id_list, fileoutput_data_class_list = \
+            self.check_random_forest_data_accuracy(testing_data_df, print_stats=print_stats, check_output=False)
+
+        output_data_dict = {ID_NAME: fileoutput_data_id_list, CLASS_NAME: fileoutput_data_class_list}
+
+        fileoutput_df = pandas.DataFrame(output_data_dict)
+        fileoutput_df.to_csv(output_filename, index=False)
+
+        # fileoutput_data_id_list = []
+        # fileoutput_data_class_list = []
+        #
+        # for data_index, data_row in testing_data_df.iterrows():
+        #     fileoutput_data_id_list.append(data_index)
+        #     fileoutput_data_class_list.append()
+
+    # def random_forest_get_majority_output(self):
+    #     return
 
     def check_training_data(self, print_stats=True):
-        self.check_random_forest_data_accuracy(self.training_data_df, print_stats=print_stats)
+        _, _ = self.check_random_forest_data_accuracy(self.training_data_df, print_stats=print_stats)
 
         # training_data_df = self.training_data_df
         # tree_list = self.tree_list

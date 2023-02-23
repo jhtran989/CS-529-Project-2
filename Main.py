@@ -14,7 +14,7 @@ MAIN_PRINT = True
 
 if __name__ == "__main__":
     chi_square_alpha_list = [0.99, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01]
-    # chi_square_alpha_list = [0.01]
+    chi_square_alpha_list = [0.01]
 
     # training the entire training set
     data_df_training_total, output_df_training_total, attribute_names_list_training = \
@@ -28,8 +28,12 @@ if __name__ == "__main__":
     # create a random forest (defined in the hyperparameters given below) with every possible pair of chi square
     # alphas and information gain method (given in the spec -- 7 alphas and 3 information gain methods for a total of
     # 21 random forest, a total of 210 trees)
+
+    information_gain_list = InformationGainEnum
+    information_gain_list = [InformationGainEnum.ENTROPY]
+
     for chi_square_alpha in chi_square_alpha_list:
-        for information_gain_method in InformationGainEnum:
+        for information_gain_method in information_gain_list:
             if MAIN_PRINT:
                 print(f"-----------------------------------------------------------------")
                 print(f"chi square alpha: {chi_square_alpha}")
@@ -39,9 +43,9 @@ if __name__ == "__main__":
             hyper_parameters = HyperParameters(0.95,
                                                chi_square_alpha,
                                                information_gain_method,
-                                               5,
+                                               23,
                                                10,
-                                               5,
+                                               3,
                                                200,
                                                0.2)
 
@@ -62,7 +66,7 @@ if __name__ == "__main__":
                                          hyper_parameters)
             random_forest.generate_random_forest()
             # random_forest.check_training_data()
-            random_forest.check_training_data(print_stats=False)
+            random_forest.check_training_data(print_stats=True)
 
             big_random_forest_tree_list.extend(random_forest.get_tree_list())
 
@@ -76,7 +80,8 @@ if __name__ == "__main__":
         print(f"Big Random Forest")
         print(f"-------------------------------------")
 
-    big_random_forest.check_training_data(print_stats=False)
+    # big_random_forest.check_training_data(print_stats=False)
+    big_random_forest.write_output_file_testing_data(f"testing_output/testing_data_output.csv")
 
 
 

@@ -77,7 +77,7 @@ class InformationGain:
         # get random attributes
         num_data_entries, num_attributes = current_training_data.shape
 
-        attribute_visited_list = node.attribute_visited_list
+        attribute_visited_list = node.attribute_visited_list.copy()
 
         # SOLVED: need to remove attributes already visited from random list...
         # FIXME: update with hyper parameters to limit max number of attributes checked
@@ -188,14 +188,36 @@ class InformationGain:
                 print(f"---------")
                 print(f"final measure: {measure_attribute[attribute]}")
 
+        chosen_attribute = max(measure_attribute, key=measure_attribute.get)
+        attribute_instances = attribute_dict[chosen_attribute]
+
+        attribute_instances_count_dict = {}
+        class_partition_attribute_values_dict = {}
+        for attribute_value in attribute_instances:
+            attribute_value_count = get_df_row_count(current_training_data, chosen_attribute, attribute_value)
+            attribute_instances_count_dict[attribute_value] = attribute_value_count
+
+            class_instances_attribute_value_df = \
+                current_training_data[current_training_data[chosen_attribute].isin([attribute_value])]
+
+            class_instances_attribute_value_dict = \
+                get_class_instance_partition_dict(data_parameters,
+                                                  class_instances_attribute_value_df)
+
+            class_partition_attribute_values_dict[attribute_value] = class_instances_attribute_value_dict
+
         if INFORMATION_GAIN_PRINT:
-            print(f"-------------------------------------------------------------------")
+            print(f"-------------------------------------------------------------------------------------------")
             print(f"class instances: {node.class_instance_partition_dict}")
             print(f"measure parent: {measure_parent}")
             print(f"measure attribute: {measure_attribute}")
             print(f"-------------------------------------------------------------------")
+            print(f"chosen attribute: {chosen_attribute}")
+            print(f"attribute values dict: {attribute_instances_count_dict}")
+            print(f"class partition: {class_partition_attribute_values_dict}")
+            print(f"-------------------------------------------------------------------------------------------")
 
-        return max(measure_attribute, key=measure_attribute.get)
+        return chosen_attribute
 
 
 # @auto_str
