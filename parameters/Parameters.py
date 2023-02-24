@@ -30,13 +30,6 @@ class DataParameters:
 
     @staticmethod
     def get_class_instance_list(output_df: DataFrame):
-        # unique_attribute_instances_array = pandas.unique(output_df[CLASS_NAME])
-        #
-        # # need to remove instances that represent MISSING DATA
-        # unique_attribute_instances_no_missing_array = np.delete(unique_attribute_instances_array,
-        #                                              np.where(unique_attribute_instances_array ==
-        #                                                       MISSING_DATA_VALUE))
-
         return DataParameters.get_labels(output_df, CLASS_NAME)
 
     @staticmethod
@@ -47,7 +40,6 @@ class DataParameters:
                                                                 np.where(unique_labels_array ==
                                                                          MISSING_DATA_VALUE))
 
-        # FIXME: just return a list instead of a numpy array
         return list(unique_labels_no_missing_array)
 
     def get_random_attributes_max_num(self, attribute_visited_list: list, max_num_attributes_check):
@@ -61,7 +53,6 @@ class DataParameters:
         :return: 
         """
 
-        # TODO: need to remove the "class" attribute from the randomization...
         attribute_names = list(self.attribute_dict.keys())
         attribute_names.remove(CLASS_NAME)
 
@@ -71,16 +62,11 @@ class DataParameters:
 
         num_remaining_attributes = len(remaining_attributes_list)
 
-        # need to subtract 1 - INCLUSIVE
-        # FIXME: need to add 1 so randint(1, 1 + 1) would return 1 for just one remaining attribute
-        # FIXME: actually, don't need extra modification...
         num_attributes_check = min(num_remaining_attributes, max_num_attributes_check)
         rand_num = random.randint(1, num_attributes_check)
 
-        # FIXME: the set_diff should NOT be empty...
         assert (num_remaining_attributes > 0)
 
-        # TypeError: Population must be a sequence.  For dicts or sets, use sorted(d).
         return random.sample(remaining_attributes_list,
                              k=rand_num)
 
@@ -95,7 +81,6 @@ class DataParameters:
         :return:
         """
 
-        # TODO: need to remove the "class" attribute from the randomization...
         attribute_names = list(self.attribute_dict.keys())
         attribute_names.remove(CLASS_NAME)
 
@@ -108,7 +93,6 @@ class DataParameters:
         # need to subtract 1 - INCLUSIVE
         rand_num = random.randint(1, num_remaining_attributes - 1)
 
-        # FIXME: the set_diff should NOT be empty...
         assert(num_remaining_attributes > 0)
 
         # TypeError: Population must be a sequence.  For dicts or sets, use sorted(d).

@@ -22,7 +22,6 @@ class ValidationCheck:
         validation_data_df = tree.validation_data_df
 
         if VALIDATION_PRINT:
-            # print(f"root attribute: {tree.root.attribute}")
             print("validation...")
 
         current_validation_accuracy, _ = check_tree_data_accuracy(validation_data_df, tree, print_stats=False)
@@ -31,14 +30,11 @@ class ValidationCheck:
             print("validation DONE")
             print(f"validation accuracy: {current_validation_accuracy}")
 
-        # previous_validation_accuracy = tree.current_validation_accuracy
         tree.previous_validation_accuracy = max(tree.previous_validation_accuracy,
                                                 tree.current_validation_accuracy)
         previous_validation_accuracy = tree.previous_validation_accuracy
         tree.current_validation_accuracy = current_validation_accuracy
 
-        # current_validation_accuracy >= previous_validation_accuracy
-        # FIXME: no absolute magnitude
         tol = 0
         validation_success = (current_validation_accuracy - previous_validation_accuracy) >= tol
 

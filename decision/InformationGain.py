@@ -71,7 +71,6 @@ class InformationGain:
         data_parameters = tree.data_parameters
         attribute_dict = tree.data_parameters.attribute_dict
 
-        # FIXME: need to create a copy so handling of missing data doesn't propagate to other levels...
         current_training_data = node.current_training_data_df[:]
 
         # get random attributes
@@ -79,9 +78,6 @@ class InformationGain:
 
         attribute_visited_list = node.attribute_visited_list.copy()
 
-        # SOLVED: need to remove attributes already visited from random list...
-        # FIXME: update with hyper parameters to limit max number of attributes checked
-        # random_attribute_list = data_parameters.get_random_attributes(attribute_visited_list, num_attributes)
         max_num_attributes_check = self.tree.hyper_parameters.max_num_attributes_check
         random_attribute_list = \
             data_parameters.get_random_attributes_max_num(attribute_visited_list, max_num_attributes_check)
@@ -89,14 +85,10 @@ class InformationGain:
         if INFORMATION_GAIN_DEBUG:
             print(f"shape of data: {current_training_data.shape}")
 
-        # SOLVED: create DataFrame from the dict... -> just use a dict with a custom function to sum values (find
-        #  proportions)
-
         class_instances_parent_dict = node.class_instance_partition_dict
 
         measure_parent = self.calculate_measure_total(class_instances_parent_dict)
 
-        # SOLVED: store list of entropy values for each attribute -> use a dict
         measure_attribute = {}
 
         for attribute in random_attribute_list:
@@ -104,7 +96,6 @@ class InformationGain:
 
             measure_attribute[attribute] = measure_parent
 
-            # FIXME: reorganized code to get the counts of each attribute instance initially
             attribute_instances_count_dict = {}
             for attribute_value in attribute_instances:
                 attribute_value_count = get_df_row_count(current_training_data, attribute, attribute_value)
@@ -122,15 +113,10 @@ class InformationGain:
                 print(f"num rows: {len(current_training_data[attribute])}")
                 print(f"num non-missing rows: {total_non_missing_data_entries}")
 
-            # TODO: need to handle MISSING DATA (at each split)
-            # uses the same proportion as the non-missing data to fill in the missing data
-
-            # if current_training_data[attribute].eq(MISSING_DATA_VALUE).any():
             if total_non_missing_data_entries < num_data_entries:
                 current_training_data[attribute] = \
                     current_training_data[attribute].replace(MISSING_DATA_VALUE, np.NaN)
 
-                # TODO: what if all the data is missing...
                 if total_non_missing_data_entries == 0:
                     uniform_prob = get_uniform_prob(attribute_instances_count_dict)
 
@@ -153,9 +139,6 @@ class InformationGain:
                     print(current_training_data[[CLASS_NAME, attribute]])
 
             for attribute_value in attribute_instances:
-                # SOLVED: value_counts() can use proportion instead of raw count...
-                # handle exception from value_counts()
-                # attribute_value_count = current_training_data[attribute].value_counts()[attribute_value]
                 attribute_value_count = get_df_row_count(current_training_data, attribute, attribute_value)
                 attribute_value_prop = attribute_value_count / num_data_entries
 
@@ -173,7 +156,6 @@ class InformationGain:
                     print(f"current data: \n{class_instances_attribute_value_df[[CLASS_NAME, attribute]]}")
                     print(f"class instance dict: {class_instances_attribute_value_dict}")
 
-                # SOLVED: entropy values are greater than 1... -> used += instead of -=
                 measure_attribute_value_weighted = attribute_value_prop * \
                                                    self.calculate_measure_total(
                                                        class_instances_attribute_value_dict)
@@ -181,8 +163,6 @@ class InformationGain:
 
                 if INFORMATION_GAIN_DEBUG:
                     print(f"partial measure (weighted): {measure_attribute_value_weighted}")
-                    # print(f"attribute proportion (value_counts): "
-                    #       f"{current_training_data[attribute].value_counts(normalize=True)[attribute_value]}")
 
             if INFORMATION_GAIN_DEBUG:
                 print(f"---------")

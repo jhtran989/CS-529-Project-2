@@ -50,9 +50,6 @@ def check_tree_data_accuracy(data_df: DataFrame, current_tree: Tree, print_stats
                     print("FAIL")
                     print(f"--------------------------")
 
-    # print(f"output list size: {len(output_dict)}")
-    # print(f"size of data: {data_df.shape}")
-
     if check_output:
         tree_success_rate = num_success / total
 

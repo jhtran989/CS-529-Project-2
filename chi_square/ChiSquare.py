@@ -62,8 +62,6 @@ class ChiSquare:
                 attribute_values_class_count_dict[attribute_value][class_instance] = attribute_value_class_count
                 attribute_values_class_total_dict[attribute_value] += attribute_value_class_count
 
-        # total_num_attribute_instances = sum(attribute_instances_count_dict.values())
-
         critical_value = 0
         for attribute_value in chosen_attribute_instances:
             for class_instance in class_instance_list:
@@ -71,8 +69,6 @@ class ChiSquare:
                 expected = class_instance_partition_prop_dict[class_instance] * \
                            attribute_values_class_total_dict[attribute_value]
 
-                # FIXME: case where expected is 0...
-                # FIXME: actually, set the critical value to some big number (infinity) and break
                 if expected == 0:
                     critical_value = math.inf
                     break
@@ -91,9 +87,6 @@ class ChiSquare:
 
 if __name__ == "__main__":
     print(chi2.ppf([1, 0], [1, 1]))
-    # print(chisquare_scipy([16, 18, 16, 14, 12, 12, 16, 18, 16, 14, 12, 12, 1],
-    #                       f_exp=[16, 16, 16, 16, 16, 8, 16, 18, 16, 14, 12, 12, 0]))
-    # print(c([1, 1], f_exp=[0, 1]))
     print(math.inf > 10)
 
     a = {}
