@@ -48,12 +48,6 @@ def get_class_instance_partition_dict(data_parameters: DataParameters, data_df: 
     class_instance_partition_dict = {}
 
     for class_instance in data_parameters.class_instance_list:
-        # try:
-        #     class_instance_partition_dict[class_instance] = \
-        #         data_df[CLASS_NAME].value_counts()[class_instance]
-        # except:
-        #     class_instance_partition_dict[class_instance] = 0
-
         class_instance_partition_dict[class_instance] = get_df_row_count(data_df, CLASS_NAME, class_instance)
 
     return class_instance_partition_dict
@@ -62,17 +56,7 @@ def get_class_instance_partition_dict(data_parameters: DataParameters, data_df: 
 def get_class_instance_partition_prop_dict(class_instance_partition_dict: dict):
     total_instances = sum(class_instance_partition_dict.values())
 
-    # FIXME: if the number of instances for a given attribute value is zero, then just return a dict with values of 0
-    #  (original dict)
     if total_instances == 0:
         return class_instance_partition_dict
 
     return valmap(lambda x: x / total_instances, class_instance_partition_dict)
-
-
-# def get_children_dict(current_training_data: DataFrame, data_parameters: DataParameters, attribute):
-#     children_dict = {}
-#     attribute_values = data_parameters.attribute_dict[attribute]
-#
-#     for attribute_value_to_node in attribute_values:
-#         children_dict[attribute_value_to_node] =

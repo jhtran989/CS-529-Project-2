@@ -1,5 +1,4 @@
 from parameters.Parameters import DataParameters
-# from tree.Tree import Node, Tree
 from parameters.HyperParameters import HyperParameters
 from tree.RandomForest import RandomForest
 
@@ -14,9 +13,6 @@ MAIN_PRINT = True
 
 if __name__ == "__main__":
     chi_square_alpha_list = [0.99, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01]
-    # chi_square_alpha_list = [0.05, 0.01]
-    # chi_square_alpha_list = [0.01]
-
     # training the entire training set
     data_df_training_total, output_df_training_total, attribute_names_list_training = \
         parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
@@ -31,8 +27,6 @@ if __name__ == "__main__":
     # 21 random forest, a total of 210 trees)
 
     information_gain_list = InformationGainEnum
-    # information_gain_list = [InformationGainEnum.ENTROPY, InformationGainEnum.GINI_INDEX]
-    # information_gain_list = [InformationGainEnum.ENTROPY]
 
     for chi_square_alpha in chi_square_alpha_list:
         for information_gain_method in information_gain_list:
@@ -67,16 +61,11 @@ if __name__ == "__main__":
                                          data_parameters,
                                          hyper_parameters)
             random_forest.generate_random_forest()
-            # random_forest.check_training_data()
-            random_forest.check_training_data(print_stats=True)
-
-            # FIXME: itterrows keeps the original index (skips all over...USE DICT)
+            random_forest.check_training_data(print_stats=False)
 
             big_random_forest_tree_list.extend(random_forest.get_tree_list())
 
     # find the success of ALL the trees combined (above)
-    # big_random_forest = RandomForest(_, _, data_df_testing, _, _)
-    # big_random_forest = RandomForest(data_df_training_total, _, data_df_testing, _, _)
     big_random_forest = RandomForest(data_df_training, _, data_df_testing, _, _)
     big_random_forest.set_tree_list(big_random_forest_tree_list)
 
@@ -85,7 +74,6 @@ if __name__ == "__main__":
         print(f"Big Random Forest")
         print(f"-------------------------------------")
 
-    # big_random_forest.check_training_data(print_stats=False)
     big_random_forest.write_output_file_testing_data(f"testing_output/testing_data_output.csv")
 
 

@@ -83,20 +83,17 @@ class Tree:
         self.data_parameters = data_parameters
         self.validation_data_df = validation_data_df
 
-        # TODO: set other parameters
         self.frontier_list = [root]
         self.root.class_instance_partition_dict = \
             get_class_instance_partition_dict(data_parameters, root.current_training_data_df)
         self.information_gain_driver = InformationGainFactory(hyper_parameters.information_gain_method, self, None)
 
-        # TODO: set some stats (maybe with hyper parameters)
         # level starts from 0 at the root
         self.sum_levels = 0
         self.max_depth = 0
         self.average_depth = 0
         self.total_num_nodes = 1
 
-        # remember to update the current node AND chosen attribute at each split below
         self.chi_square = ChiSquare(self, None, None)
 
         # keep track of the previous and current validation accuracy for tuning hyper parameters
@@ -124,14 +121,12 @@ class Tree:
 
         while current_output is None:
             # get the next node by following the tree
-            # FIXME: if a split with a MISSING DATA VALUE in the row is encountered, get a random value from the
             #  list of all possible attribute values
             current_attribute_value = data_row_df[current_attribute][0]
             if current_attribute_value == MISSING_DATA_VALUE:
                 current_attribute_dict = self.data_parameters.attribute_dict
                 current_attribute_value_list = current_attribute_dict[current_attribute]
 
-                # important - sample returns a list so need to index into list
                 current_attribute_value = random.sample(current_attribute_value_list, k=1)[0]
 
             current_node = current_node.children_dict[current_attribute_value]
@@ -143,7 +138,6 @@ class Tree:
         return current_output
 
 
-    # TODO: remember to update the node in the information_gain_driver each call
     def grow_level(self):
         """
         FIXME: DEPRECATED...
@@ -154,7 +148,6 @@ class Tree:
         data_parameters = self.data_parameters
         frontier_list = self.frontier_list
 
-        # TODO: set parent stuff for each node in the frontier_list...
         for node in frontier_list:
             current_training_data = node.current_training_data_df
             self.information_gain_driver.update_node(node)
@@ -168,7 +161,6 @@ class Tree:
             else:
                 chosen_attribute = self.information_gain_driver.find_split()
 
-                # TODO: update the frontier nodes with new data and updating node parameters
                 node.attribute = chosen_attribute
                 node.children_dict = self.get_children_dict(node, chosen_attribute)
 
@@ -180,37 +172,14 @@ class Tree:
         current_training_data = node.current_training_data_df
 
         for attribute_value_to_node in attribute_values:
-            # SOLVED: need to check for a clear split (also use cut-off) -> remove data with attribute value
-
-            # SOLVED: error dropping rows -> need .index
-            # FIXME: instead of dropping rows, use them exclusively for the new data
-            # new_current_training_data = \
-            #     current_training_data.drop(current_training_data[
-            #                                    current_training_data[
-            #                                        attribute] == attribute_value_to_node].index, axis=0)
             new_current_training_data = \
                 current_training_data[current_training_data[attribute] == attribute_value_to_node]
-
-            # if TREE_DEBUG:
-            #     print("data to drop:")
-            #     print(new_current_training_data)
-            #     # print("previous data:")
-            #     # print(current_training_data)
-
-            # new_current_training_data = \
-            #     current_training_data[
-            #         current_training_data[
-            #             attribute] == attribute_value_to_node]
 
             # get parameters for the new nodes
             new_class_instance_partition_dict = get_class_instance_partition_dict(
                 self.data_parameters,
                 new_current_training_data)
 
-            # FIXME
-            # print(f"IN NODE new_class_instance_partition_dict: {new_class_instance_partition_dict}")
-
-            # FIXME: need to make a copy of the list
             new_attribute_visited_list = node.attribute_visited_list.copy()
             new_attribute_visited_list.append(attribute)
 
@@ -220,13 +189,7 @@ class Tree:
             self.total_num_nodes += 1
             self.max_depth = max(self.max_depth, new_tree_level)
 
-            # FIXME: set current output to the same as the parent initially for VALIDATION (not all frontier nodes
-            #  will have their final outputs set when validation occurs)
             temporary_output = node.output
-
-            # print(f"TEMPORARY {temporary_output}")
-            # print(f"A {temporary_output}")
-            # print(f"INSIDE node output {node.output}")
 
             assert temporary_output is not None
 
@@ -240,9 +203,6 @@ class Tree:
                                                           output=temporary_output,
                                                           cached_output=temporary_output)
 
-        # FIXME: change the parent node output to None AFTER all the children are created (for VALIDATION)
-        # SOLVED: outside the for loop
-        # SOLVED: cached the output for use with EARLY VALIDATION TERMINATION
         node.output = None
 
         return children_dict
@@ -254,7 +214,6 @@ class Tree:
         hyper_parameters = self.hyper_parameters
         validation_check = self.validation_check
 
-        # TODO: set parent stuff for each node in the frontier_list...
         # while the frontier is not empty
         while frontier_list:
             update_children_dict = False
@@ -269,9 +228,6 @@ class Tree:
                 print_data_stats(node, current_training_data, data_parameters)
 
             class_instance_partition_dict = node.class_instance_partition_dict
-
-            # FIXME:
-            # print(f"class_instance_partition_dict: {class_instance_partition_dict}")
 
             class_instance_max = max(class_instance_partition_dict, key=class_instance_partition_dict.get)
 
@@ -302,7 +258,6 @@ class Tree:
 
                 class_max_prop = class_instance_partition_dict[class_instance_max] / current_training_data_rows
 
-                # TODO: need to check validation - just decrease max depth by 1 for testing
                 max_depth_cutoff = self.hyper_parameters.max_depth_cutoff
                 current_tree_level = node.tree_level
 
@@ -339,41 +294,25 @@ class Tree:
                         print("using information gain...")
                         print(f"chosen attribute: {chosen_attribute}")
 
-                    # TODO: implement Chi Square to check for termination (set output)
                     if self.chi_square.check_termination():
-                        # # TODO: update the frontier nodes with new data and updating node parameters
-                        # # FIXME: move to AFTER validation for the children dict (output is still None...)
                         node.attribute = chosen_attribute
 
-                        # FIXME: done twice...other in get_children_dict
-                        # node.attribute_visited_list.append(chosen_attribute)
-
-                        # FIXME: during validation, one of the children with an INCOMPLETE path may not have an
-                        #  output...
-                        # FIXME: temporarily set output to the max class instance
                         node.output = class_instance_max
                         node.cached_output = class_instance_max
-
-                        # # FIXME:
-                        # print(f"node output {node.output}")
 
                         node.children_dict = self.get_children_dict(node, chosen_attribute)
                         update_children_dict = True
 
-                        # FIXME: check if there is at least one attribute left to check
                         num_attributes_visited = len(data_parameters.attribute_list)
                         total_num_attributes = len(node.attribute_visited_list)
 
                         # no more attributes to check...
-                        # FIXME: should never be True as long as max_depth (hyperparameters) is less than the
                         #  total number of attributes
                         if num_attributes_visited == total_num_attributes:
                             node.attribute = "No More Attributes to Check Along Path"
                             node.output = class_instance_max
                             node.cached_output = class_instance_max
                         else:
-                            # TODO: add the children to the frontier
-                            # FIXME: need to delay adding the new nodes to the frontier list until AFTER validation
                             frontier_list.extend(node.children_dict.values())
                             add_new_frontier_nodes = True
 
@@ -385,47 +324,17 @@ class Tree:
 
             # perform validation every so often defined by validation_cycle (hyperparameter)
             # performed cyclically after a certain number of nodes are created
-            # FIXME: only check after the FIRSY cycle (validation_cycle number of nodes are already in the tree)
-            # FIXME: move validation at the END of the node creation (so no lingering nodes still exist in
-            #  the tree WITHOUT AN OUTPUT)
-
             # if not validation_end_termination:
 
             validation_cycle = hyper_parameters.validation_cycle
             total_num_nodes = self.total_num_nodes
             if (total_num_nodes % validation_cycle) == 0 and total_num_nodes != 0:
                 if not validation_check.check_validation():
-                    # FIXME: reduce max depth as a simple condition for now (remember to take max so the depth
-                    #  is at least 1)
-                    # SOLVED: actually, just do an early termination of the tree if this happens...
                     max_depth_cutoff = hyper_parameters.max_depth_cutoff
                     hyper_parameters.max_depth_cutoff = max(1, max_depth_cutoff - 1)
-                    # hyper_parameters.max_depth_cutoff = 1
-                    # validation_check.end_termination = True
-
-                    # node.attribute = "Validation Fail"
-                    # node.output = class_instance_max
-                    # break
-
-                # remove current node from frontier
-                # frontier_list.pop(0)
-
-            # # TODO: update the frontier nodes with new data and updating node parameters
-            # # FIXME: move to AFTER validation
-            # if update_children_dict:
-            #     node.children_dict = self.get_children_dict(node, chosen_attribute)
-            #
-            #     # TODO: add the children to the frontier
-            #     # FIXME: need to delay adding the new nodes to the frontier list until AFTER validation
-            #     if add_new_frontier_nodes:
-            #         frontier_list.extend(node.children_dict.values())
 
         # at the very end of the build process
         self.average_depth = self.sum_levels / self.total_num_nodes
-
-# SOLVED: moved information stuff into tree due to CIRCULAR IMPORT... -> used type annotations (if TYPE_CHECKING...)
-
-#################################################
 
 if __name__ == "__main__":
     print()

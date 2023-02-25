@@ -1,28 +1,9 @@
-# from __future__ import annotations
-# from typing import TYPE_CHECKING
-#
-# if TYPE_CHECKING:
-#     from parameters.Parameters import DataParameters
-#     from parameters.HyperParameters import HyperParameters
 from __future__ import annotations
 
 from enum import Enum, auto
 
 from utilities.PrintUtilities import auto_str
 
-
-# from pandas import DataFrame
-#
-# from Utilities import MISSING_DATA_VALUE
-
-
-# def get_normalized_probabilities(data_df: DataFrame, attribute, attribute_instances_array):
-#     data_column = data_df[attribute]
-#
-#     try:
-#         count = data_df[attribute].drop(data_column[data_df[attribute].isin(MISSING_DATA_VALUE)]).value_counts()
-#     except:
-#         count = 0
 
 @auto_str
 class InformationGainEnum(Enum):

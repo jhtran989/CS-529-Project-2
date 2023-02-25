@@ -31,8 +31,6 @@ def parse_data_training(filename):
 
     data_df.pop('id')
 
-    # FIXME: create copy of the output
-    # output_df = data_df.pop('class')
     output_df = data_df[[CLASS_NAME]].copy()
 
     attribute_names = list(data_df.keys())
@@ -63,7 +61,6 @@ def split_training_validation(data_df_training_total: DataFrame,
                               hyper_parameters: HyperParameters):
     percent_training_validation = hyper_parameters.percent_training_validation
 
-    # FIXME: set random state to 0 for testing
     data_df_validation = data_df_training_total.sample(frac=percent_training_validation)
     data_df_training = data_df_training_total.drop(data_df_validation.index)
 
@@ -98,32 +95,8 @@ def get_df_row_count(data_df: DataFrame, column_name, column_instance):
 
 
 if __name__ == "__main__":
-    # data_df_training, output_df_training, attribute_names_training = \
-    #     parse_data_training(f"2023-cs429529-project1-random-forests/agaricus-lepiota - training.csv")
     data_df_training, output_df_training, attribute_names_training = \
         parse_data_training(f"../2023-cs429529-project1-random-forests/agaricus-lepiota - training_small.csv")
-
-    # print(attribute_names_training)
-    # print(data_df_training)
-    # print(data_df_training['cap-shape'][0])
-    # print(output_df_training)
-    # print(output_df_training[0])
-    #
-    # data_df_testing, attribute_names_testing = \
-    #     parse_data_testing(f"2023-cs429529-project1-random-forests/agaricus-lepiota - testing.csv")
-    #
-    # print(data_df_testing)
-    # print(attribute_names_testing)
-    # print(data_df_testing['cap-shape'][1])
-    #
-    # for entry in data_df_testing['cap-shape']:
-    #     print(f"{entry}", end=" ")
-    # print()
-    #
-    # print(data_df_testing['cap-shape'][1])
-    #
-    # for index, value in enumerate(data_df_training['cap-shape']):
-    #     print(f"{index}: {value}")
 
     scratch_data_df = data_df_training[:]
 
