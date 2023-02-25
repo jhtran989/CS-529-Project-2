@@ -1,0 +1,2693 @@
+-----------------------------------------------------------------
+chi square alpha: 0.99
+information gain method: ENTROPY
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9826315789473684
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 449
+max depth: 5
+average_depth: 3.2773722627737225
+total number of nodes: 137
+--------------------------------------------------------------
+success rate: 0.9731578947368421
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 612
+max depth: 5
+average_depth: 3.1384615384615384
+total number of nodes: 195
+--------------------------------------------------------------
+success rate: 0.8912280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 345
+max depth: 5
+average_depth: 3.3823529411764706
+total number of nodes: 102
+--------------------------------------------------------------
+success rate: 0.9677192982456141
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 743
+max depth: 5
+average_depth: 3.3169642857142856
+total number of nodes: 224
+--------------------------------------------------------------
+success rate: 0.8473684210526315
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-surface
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 611
+max depth: 5
+average_depth: 3.703030303030303
+total number of nodes: 165
+--------------------------------------------------------------
+success rate: 0.9485964912280702
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-color
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 323
+max depth: 5
+average_depth: 2.669421487603306
+total number of nodes: 121
+--------------------------------------------------------------
+success rate: 0.9959649122807017
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-br
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 127
+max depth: 5
+average_depth: 2.4901960784313726
+total number of nodes: 51
+--------------------------------------------------------------
+success rate: 0.9985964912280701
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-number
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 121
+max depth: 5
+average_depth: 2.951219512195122
+total number of nodes: 41
+--------------------------------------------------------------
+success rate: 0.9987719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 65
+max depth: 3
+average_depth: 2.1666666666666665
+total number of nodes: 30
+--------------------------------------------------------------
+success rate: 0.97
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: ENTROPY
+chi square alpha: 0.99
+sum of levels: 361
+max depth: 5
+average_depth: 3.2522522522522523
+total number of nodes: 111
+---------------------------------------------------------
+random forest success rate: 0.9957894736842106
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.99
+information gain method: GINI_INDEX
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.8728070175438597
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 265
+max depth: 5
+average_depth: 3.0113636363636362
+total number of nodes: 88
+--------------------------------------------------------------
+success rate: 0.9850877192982456
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 553
+max depth: 5
+average_depth: 2.8952879581151834
+total number of nodes: 191
+--------------------------------------------------------------
+success rate: 0.9787719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 361
+max depth: 5
+average_depth: 3.2818181818181817
+total number of nodes: 110
+--------------------------------------------------------------
+success rate: 0.9740350877192983
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 308
+max depth: 5
+average_depth: 3.422222222222222
+total number of nodes: 90
+--------------------------------------------------------------
+success rate: 0.7414035087719298
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 532
+max depth: 5
+average_depth: 3.619047619047619
+total number of nodes: 147
+--------------------------------------------------------------
+success rate: 0.9849122807017544
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: habitat
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 359
+max depth: 5
+average_depth: 3.205357142857143
+total number of nodes: 112
+--------------------------------------------------------------
+success rate: 0.9775438596491228
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 108
+max depth: 5
+average_depth: 2.6341463414634148
+total number of nodes: 41
+--------------------------------------------------------------
+success rate: 0.963859649122807
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 149
+max depth: 5
+average_depth: 2.9215686274509802
+total number of nodes: 51
+--------------------------------------------------------------
+success rate: 0.992280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 134
+max depth: 4
+average_depth: 2.7916666666666665
+total number of nodes: 48
+--------------------------------------------------------------
+success rate: 0.8440350877192982
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: GINI_INDEX
+chi square alpha: 0.99
+sum of levels: 414
+max depth: 5
+average_depth: 3.7636363636363637
+total number of nodes: 110
+---------------------------------------------------------
+random forest success rate: 0.993859649122807
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.99
+information gain method: MISCLASSIFICATION_ERROR
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9875438596491228
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: bruises
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 380
+max depth: 5
+average_depth: 3.5849056603773586
+total number of nodes: 106
+--------------------------------------------------------------
+success rate: 0.7814035087719299
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 197
+max depth: 5
+average_depth: 2.9402985074626864
+total number of nodes: 67
+--------------------------------------------------------------
+success rate: 0.983859649122807
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-surface
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 447
+max depth: 5
+average_depth: 3.576
+total number of nodes: 125
+--------------------------------------------------------------
+success rate: 0.946140350877193
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 437
+max depth: 5
+average_depth: 3.8
+total number of nodes: 115
+--------------------------------------------------------------
+success rate: 0.9815789473684211
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 302
+max depth: 5
+average_depth: 3.471264367816092
+total number of nodes: 87
+--------------------------------------------------------------
+success rate: 0.8980701754385965
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-shape
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 247
+max depth: 5
+average_depth: 3.0121951219512195
+total number of nodes: 82
+--------------------------------------------------------------
+success rate: 0.977719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 523
+max depth: 5
+average_depth: 3.208588957055215
+total number of nodes: 163
+--------------------------------------------------------------
+success rate: 0.9689473684210527
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 444
+max depth: 5
+average_depth: 3.194244604316547
+total number of nodes: 139
+--------------------------------------------------------------
+success rate: 0.9952631578947368
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 134
+max depth: 4
+average_depth: 3.0454545454545454
+total number of nodes: 44
+--------------------------------------------------------------
+success rate: 0.9849122807017544
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.99
+sum of levels: 297
+max depth: 5
+average_depth: 3.4941176470588236
+total number of nodes: 85
+---------------------------------------------------------
+random forest success rate: 0.9973684210526316
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.75
+information gain method: ENTROPY
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.8368421052631579
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 106
+max depth: 5
+average_depth: 2.409090909090909
+total number of nodes: 44
+--------------------------------------------------------------
+success rate: 0.9831578947368421
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 411
+max depth: 5
+average_depth: 3.288
+total number of nodes: 125
+--------------------------------------------------------------
+success rate: 0.9650877192982457
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 489
+max depth: 5
+average_depth: 3.0754716981132075
+total number of nodes: 159
+--------------------------------------------------------------
+success rate: 0.9803508771929824
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 369
+max depth: 5
+average_depth: 3.1538461538461537
+total number of nodes: 117
+--------------------------------------------------------------
+success rate: 0.996140350877193
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-number
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 260
+max depth: 5
+average_depth: 3.3333333333333335
+total number of nodes: 78
+--------------------------------------------------------------
+success rate: 0.9878947368421053
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 535
+max depth: 5
+average_depth: 2.9395604395604398
+total number of nodes: 182
+--------------------------------------------------------------
+success rate: 0.8001754385964912
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 412
+max depth: 5
+average_depth: 3.7454545454545456
+total number of nodes: 110
+--------------------------------------------------------------
+success rate: 0.9545614035087719
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 822
+max depth: 5
+average_depth: 3.3688524590163933
+total number of nodes: 244
+--------------------------------------------------------------
+success rate: 0.984561403508772
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 121
+max depth: 5
+average_depth: 2.951219512195122
+total number of nodes: 41
+--------------------------------------------------------------
+success rate: 0.5166666666666667
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: Chi Square Cutoff
+information gain method: ENTROPY
+chi square alpha: 0.75
+sum of levels: 0
+max depth: 0
+average_depth: 0.0
+total number of nodes: 1
+---------------------------------------------------------
+random forest success rate: 0.9957894736842106
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.75
+information gain method: GINI_INDEX
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9873684210526316
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 297
+max depth: 5
+average_depth: 3.337078651685393
+total number of nodes: 89
+--------------------------------------------------------------
+success rate: 0.8749122807017544
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-surface
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 601
+max depth: 5
+average_depth: 3.732919254658385
+total number of nodes: 161
+--------------------------------------------------------------
+success rate: 0.9940350877192983
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 44
+max depth: 3
+average_depth: 1.9130434782608696
+total number of nodes: 23
+--------------------------------------------------------------
+success rate: 0.8303508771929825
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 169
+max depth: 5
+average_depth: 3.0727272727272728
+total number of nodes: 55
+--------------------------------------------------------------
+success rate: 0.8166666666666667
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 233
+max depth: 5
+average_depth: 3.1066666666666665
+total number of nodes: 75
+--------------------------------------------------------------
+success rate: 0.9971929824561403
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 319
+max depth: 5
+average_depth: 3.1584158415841586
+total number of nodes: 101
+--------------------------------------------------------------
+success rate: 0.9192982456140351
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 202
+max depth: 5
+average_depth: 3.15625
+total number of nodes: 64
+--------------------------------------------------------------
+success rate: 0.882280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-ar
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 219
+max depth: 5
+average_depth: 3.084507042253521
+total number of nodes: 71
+--------------------------------------------------------------
+success rate: 0.9703508771929824
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 835
+max depth: 5
+average_depth: 3.3669354838709675
+total number of nodes: 248
+--------------------------------------------------------------
+success rate: 0.9568421052631579
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: GINI_INDEX
+chi square alpha: 0.75
+sum of levels: 567
+max depth: 5
+average_depth: 3.7549668874172184
+total number of nodes: 151
+---------------------------------------------------------
+random forest success rate: 0.9964912280701754
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.75
+information gain method: MISCLASSIFICATION_ERROR
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9445614035087719
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-br
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 410
+max depth: 5
+average_depth: 3.360655737704918
+total number of nodes: 122
+--------------------------------------------------------------
+success rate: 0.7805263157894737
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 73
+max depth: 3
+average_depth: 2.212121212121212
+total number of nodes: 33
+--------------------------------------------------------------
+success rate: 0.997719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-spacing
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 314
+max depth: 5
+average_depth: 3.6511627906976742
+total number of nodes: 86
+--------------------------------------------------------------
+success rate: 0.783859649122807
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 200
+max depth: 5
+average_depth: 3.125
+total number of nodes: 64
+--------------------------------------------------------------
+success rate: 0.8077192982456141
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 239
+max depth: 5
+average_depth: 3.103896103896104
+total number of nodes: 77
+--------------------------------------------------------------
+success rate: 0.9821052631578947
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 284
+max depth: 5
+average_depth: 3.3411764705882354
+total number of nodes: 85
+--------------------------------------------------------------
+success rate: 0.9896491228070176
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 346
+max depth: 5
+average_depth: 3.392156862745098
+total number of nodes: 102
+--------------------------------------------------------------
+success rate: 0.9489473684210527
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 709
+max depth: 5
+average_depth: 3.297674418604651
+total number of nodes: 215
+--------------------------------------------------------------
+success rate: 0.9285964912280702
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: habitat
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 280
+max depth: 5
+average_depth: 3.010752688172043
+total number of nodes: 93
+--------------------------------------------------------------
+success rate: 0.8798245614035087
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-surface
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.75
+sum of levels: 277
+max depth: 5
+average_depth: 3.2976190476190474
+total number of nodes: 84
+---------------------------------------------------------
+random forest success rate: 0.9970175438596491
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.5
+information gain method: ENTROPY
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9942105263157894
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-br
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 222
+max depth: 5
+average_depth: 3.217391304347826
+total number of nodes: 69
+--------------------------------------------------------------
+success rate: 0.8282456140350877
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 222
+max depth: 5
+average_depth: 3.46875
+total number of nodes: 64
+--------------------------------------------------------------
+success rate: 0.977719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 318
+max depth: 5
+average_depth: 3.4193548387096775
+total number of nodes: 93
+--------------------------------------------------------------
+success rate: 0.9550877192982457
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 397
+max depth: 5
+average_depth: 3.2016129032258065
+total number of nodes: 124
+--------------------------------------------------------------
+success rate: 0.9687719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 376
+max depth: 5
+average_depth: 2.9147286821705425
+total number of nodes: 129
+--------------------------------------------------------------
+success rate: 0.7833333333333333
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 443
+max depth: 5
+average_depth: 3.786324786324786
+total number of nodes: 117
+--------------------------------------------------------------
+success rate: 0.9392982456140351
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-br
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 587
+max depth: 5
+average_depth: 3.7628205128205128
+total number of nodes: 156
+--------------------------------------------------------------
+success rate: 0.9940350877192983
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 127
+max depth: 5
+average_depth: 2.8222222222222224
+total number of nodes: 45
+--------------------------------------------------------------
+success rate: 0.8042105263157895
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 279
+max depth: 5
+average_depth: 3.1
+total number of nodes: 90
+--------------------------------------------------------------
+success rate: 0.9280701754385965
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: ENTROPY
+chi square alpha: 0.5
+sum of levels: 589
+max depth: 5
+average_depth: 3.97972972972973
+total number of nodes: 148
+---------------------------------------------------------
+random forest success rate: 0.9966666666666667
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.5
+information gain method: GINI_INDEX
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9736842105263158
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 286
+max depth: 5
+average_depth: 3.2873563218390807
+total number of nodes: 87
+--------------------------------------------------------------
+success rate: 0.9829824561403508
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: population
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 343
+max depth: 5
+average_depth: 2.906779661016949
+total number of nodes: 118
+--------------------------------------------------------------
+success rate: 0.9489473684210527
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 667
+max depth: 5
+average_depth: 3.335
+total number of nodes: 200
+--------------------------------------------------------------
+success rate: 0.9891228070175438
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 152
+max depth: 5
+average_depth: 2.980392156862745
+total number of nodes: 51
+--------------------------------------------------------------
+success rate: 0.9617543859649123
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 624
+max depth: 5
+average_depth: 3.216494845360825
+total number of nodes: 194
+--------------------------------------------------------------
+success rate: 0.9507017543859649
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-ar
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 438
+max depth: 5
+average_depth: 3.711864406779661
+total number of nodes: 118
+--------------------------------------------------------------
+success rate: 0.923859649122807
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-shape
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 479
+max depth: 5
+average_depth: 3.397163120567376
+total number of nodes: 141
+--------------------------------------------------------------
+success rate: 0.9987719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 175
+max depth: 5
+average_depth: 2.734375
+total number of nodes: 64
+--------------------------------------------------------------
+success rate: 0.9368421052631579
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 331
+max depth: 5
+average_depth: 3.377551020408163
+total number of nodes: 98
+--------------------------------------------------------------
+success rate: 0.8119298245614035
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: GINI_INDEX
+chi square alpha: 0.5
+sum of levels: 168
+max depth: 4
+average_depth: 2.8
+total number of nodes: 60
+---------------------------------------------------------
+random forest success rate: 0.997719298245614
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.5
+information gain method: MISCLASSIFICATION_ERROR
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9412280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-ar
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 396
+max depth: 5
+average_depth: 3.142857142857143
+total number of nodes: 126
+--------------------------------------------------------------
+success rate: 0.9654385964912281
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 517
+max depth: 5
+average_depth: 2.888268156424581
+total number of nodes: 179
+--------------------------------------------------------------
+success rate: 0.9863157894736843
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 234
+max depth: 5
+average_depth: 3.295774647887324
+total number of nodes: 71
+--------------------------------------------------------------
+success rate: 0.9921052631578947
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 153
+max depth: 5
+average_depth: 3.06
+total number of nodes: 50
+--------------------------------------------------------------
+success rate: 0.9826315789473684
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 511
+max depth: 5
+average_depth: 3.4527027027027026
+total number of nodes: 148
+--------------------------------------------------------------
+success rate: 0.9935087719298246
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-ar
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 130
+max depth: 4
+average_depth: 2.5
+total number of nodes: 52
+--------------------------------------------------------------
+success rate: 0.9721052631578947
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 326
+max depth: 5
+average_depth: 3.5434782608695654
+total number of nodes: 92
+--------------------------------------------------------------
+success rate: 0.8689473684210526
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 254
+max depth: 5
+average_depth: 3.0602409638554215
+total number of nodes: 83
+--------------------------------------------------------------
+success rate: 0.7650877192982456
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 273
+max depth: 5
+average_depth: 3.211764705882353
+total number of nodes: 85
+--------------------------------------------------------------
+success rate: 0.993859649122807
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.5
+sum of levels: 203
+max depth: 4
+average_depth: 3.0757575757575757
+total number of nodes: 66
+---------------------------------------------------------
+random forest success rate: 0.9989473684210526
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.25
+information gain method: ENTROPY
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.756140350877193
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 387
+max depth: 5
+average_depth: 3.3947368421052633
+total number of nodes: 114
+--------------------------------------------------------------
+success rate: 0.9935087719298246
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 60
+max depth: 5
+average_depth: 2.608695652173913
+total number of nodes: 23
+--------------------------------------------------------------
+success rate: 0.9847368421052631
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 136
+max depth: 5
+average_depth: 3.090909090909091
+total number of nodes: 44
+--------------------------------------------------------------
+success rate: 0.9657894736842105
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 524
+max depth: 5
+average_depth: 3.3164556962025316
+total number of nodes: 158
+--------------------------------------------------------------
+success rate: 0.9563157894736842
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 602
+max depth: 5
+average_depth: 3.04040404040404
+total number of nodes: 198
+--------------------------------------------------------------
+success rate: 0.986140350877193
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 66
+max depth: 4
+average_depth: 2.2758620689655173
+total number of nodes: 29
+--------------------------------------------------------------
+success rate: 0.9566666666666667
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 325
+max depth: 5
+average_depth: 2.8260869565217392
+total number of nodes: 115
+--------------------------------------------------------------
+success rate: 0.9894736842105263
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 17
+max depth: 2
+average_depth: 1.2142857142857142
+total number of nodes: 14
+--------------------------------------------------------------
+success rate: 0.9842105263157894
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 507
+max depth: 5
+average_depth: 3.425675675675676
+total number of nodes: 148
+--------------------------------------------------------------
+success rate: 0.9956140350877193
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: ENTROPY
+chi square alpha: 0.25
+sum of levels: 126
+max depth: 4
+average_depth: 2.6808510638297873
+total number of nodes: 47
+---------------------------------------------------------
+random forest success rate: 0.9949122807017544
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.25
+information gain method: GINI_INDEX
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.8156140350877193
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 130
+max depth: 4
+average_depth: 2.5
+total number of nodes: 52
+--------------------------------------------------------------
+success rate: 0.9912280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-number
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 77
+max depth: 3
+average_depth: 2.2
+total number of nodes: 35
+--------------------------------------------------------------
+success rate: 0.9985964912280701
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 203
+max depth: 5
+average_depth: 3.029850746268657
+total number of nodes: 67
+--------------------------------------------------------------
+success rate: 0.991578947368421
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 103
+max depth: 4
+average_depth: 2.4523809523809526
+total number of nodes: 42
+--------------------------------------------------------------
+success rate: 0.7984210526315789
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 440
+max depth: 5
+average_depth: 3.4375
+total number of nodes: 128
+--------------------------------------------------------------
+success rate: 0.9975438596491228
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: bruises
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 262
+max depth: 5
+average_depth: 3.358974358974359
+total number of nodes: 78
+--------------------------------------------------------------
+success rate: 0.9666666666666667
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 676
+max depth: 5
+average_depth: 3.0588235294117645
+total number of nodes: 221
+--------------------------------------------------------------
+success rate: 0.9829824561403508
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 137
+max depth: 5
+average_depth: 2.74
+total number of nodes: 50
+--------------------------------------------------------------
+success rate: 0.7514035087719299
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-shape
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 311
+max depth: 5
+average_depth: 3.616279069767442
+total number of nodes: 86
+--------------------------------------------------------------
+success rate: 0.9278947368421052
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-attachment
+information gain method: GINI_INDEX
+chi square alpha: 0.25
+sum of levels: 605
+max depth: 5
+average_depth: 4.230769230769231
+total number of nodes: 143
+---------------------------------------------------------
+random forest success rate: 0.9959649122807017
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.25
+information gain method: MISCLASSIFICATION_ERROR
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.7824561403508772
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 76
+max depth: 4
+average_depth: 2.4516129032258065
+total number of nodes: 31
+--------------------------------------------------------------
+success rate: 0.9935087719298246
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 153
+max depth: 5
+average_depth: 2.8333333333333335
+total number of nodes: 54
+--------------------------------------------------------------
+success rate: 0.992280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 80
+max depth: 5
+average_depth: 2.6666666666666665
+total number of nodes: 30
+--------------------------------------------------------------
+success rate: 0.9275438596491228
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 218
+max depth: 5
+average_depth: 3.2058823529411766
+total number of nodes: 68
+--------------------------------------------------------------
+success rate: 0.987719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 35
+max depth: 4
+average_depth: 1.75
+total number of nodes: 20
+--------------------------------------------------------------
+success rate: 0.9992982456140351
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 75
+max depth: 4
+average_depth: 2.5
+total number of nodes: 30
+--------------------------------------------------------------
+success rate: 0.9943859649122807
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 39
+max depth: 3
+average_depth: 1.6956521739130435
+total number of nodes: 23
+--------------------------------------------------------------
+success rate: 0.9863157894736843
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 115
+max depth: 4
+average_depth: 2.5
+total number of nodes: 46
+--------------------------------------------------------------
+success rate: 0.9854385964912281
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-br
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 189
+max depth: 4
+average_depth: 2.486842105263158
+total number of nodes: 76
+--------------------------------------------------------------
+success rate: 0.9664912280701754
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-ar
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.25
+sum of levels: 250
+max depth: 5
+average_depth: 3.3783783783783785
+total number of nodes: 74
+---------------------------------------------------------
+random forest success rate: 0.9954385964912281
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.1
+information gain method: ENTROPY
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9259649122807018
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: population
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 467
+max depth: 5
+average_depth: 3.3597122302158273
+total number of nodes: 139
+--------------------------------------------------------------
+success rate: 0.9868421052631579
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 9
+max depth: 1
+average_depth: 0.9
+total number of nodes: 10
+--------------------------------------------------------------
+success rate: 0.9952631578947368
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 51
+max depth: 4
+average_depth: 1.9615384615384615
+total number of nodes: 26
+--------------------------------------------------------------
+success rate: 0.966842105263158
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 506
+max depth: 5
+average_depth: 3.3733333333333335
+total number of nodes: 150
+--------------------------------------------------------------
+success rate: 0.9640350877192982
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 356
+max depth: 5
+average_depth: 2.7384615384615385
+total number of nodes: 130
+--------------------------------------------------------------
+success rate: 0.9905263157894737
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 59
+max depth: 4
+average_depth: 2.107142857142857
+total number of nodes: 28
+--------------------------------------------------------------
+success rate: 0.958421052631579
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: veil-color
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 224
+max depth: 5
+average_depth: 3.393939393939394
+total number of nodes: 66
+--------------------------------------------------------------
+success rate: 0.994561403508772
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 148
+max depth: 5
+average_depth: 3.148936170212766
+total number of nodes: 47
+--------------------------------------------------------------
+success rate: 0.8914035087719299
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 326
+max depth: 5
+average_depth: 3.26
+total number of nodes: 100
+--------------------------------------------------------------
+success rate: 0.8512280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: ENTROPY
+chi square alpha: 0.1
+sum of levels: 171
+max depth: 5
+average_depth: 3.489795918367347
+total number of nodes: 49
+---------------------------------------------------------
+random forest success rate: 0.9980701754385964
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.1
+information gain method: GINI_INDEX
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9987719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 154
+max depth: 5
+average_depth: 2.8
+total number of nodes: 55
+--------------------------------------------------------------
+success rate: 0.9066666666666666
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 438
+max depth: 5
+average_depth: 3.4488188976377954
+total number of nodes: 127
+--------------------------------------------------------------
+success rate: 0.9950877192982456
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 101
+max depth: 3
+average_depth: 2.3488372093023258
+total number of nodes: 43
+--------------------------------------------------------------
+success rate: 0.9870175438596491
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-ar
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 494
+max depth: 5
+average_depth: 3.3835616438356166
+total number of nodes: 146
+--------------------------------------------------------------
+success rate: 0.9240350877192982
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 465
+max depth: 5
+average_depth: 3.72
+total number of nodes: 125
+--------------------------------------------------------------
+success rate: 0.9910526315789474
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 100
+max depth: 5
+average_depth: 2.6315789473684212
+total number of nodes: 38
+--------------------------------------------------------------
+success rate: 0.9821052631578947
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 248
+max depth: 5
+average_depth: 3.0617283950617282
+total number of nodes: 81
+--------------------------------------------------------------
+success rate: 0.9964912280701754
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 152
+max depth: 4
+average_depth: 2.533333333333333
+total number of nodes: 60
+--------------------------------------------------------------
+success rate: 0.9012280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 382
+max depth: 5
+average_depth: 3.105691056910569
+total number of nodes: 123
+--------------------------------------------------------------
+success rate: 0.997719298245614
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-attachment
+information gain method: GINI_INDEX
+chi square alpha: 0.1
+sum of levels: 121
+max depth: 5
+average_depth: 2.813953488372093
+total number of nodes: 43
+---------------------------------------------------------
+random forest success rate: 0.9992982456140351
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.1
+information gain method: MISCLASSIFICATION_ERROR
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9214035087719298
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-shape
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 504
+max depth: 5
+average_depth: 3.5492957746478875
+total number of nodes: 142
+--------------------------------------------------------------
+success rate: 0.9608771929824561
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-spacing
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 418
+max depth: 5
+average_depth: 3.6991150442477876
+total number of nodes: 113
+--------------------------------------------------------------
+success rate: 0.8098245614035088
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 231
+max depth: 5
+average_depth: 2.9240506329113924
+total number of nodes: 79
+--------------------------------------------------------------
+success rate: 0.9615789473684211
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: habitat
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 236
+max depth: 5
+average_depth: 2.5934065934065935
+total number of nodes: 91
+--------------------------------------------------------------
+success rate: 0.9959649122807017
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: population
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 93
+max depth: 4
+average_depth: 2.066666666666667
+total number of nodes: 45
+--------------------------------------------------------------
+success rate: 0.9896491228070176
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 235
+max depth: 5
+average_depth: 3.4057971014492754
+total number of nodes: 69
+--------------------------------------------------------------
+success rate: 0.9
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 431
+max depth: 5
+average_depth: 3.6218487394957983
+total number of nodes: 119
+--------------------------------------------------------------
+success rate: 0.909298245614035
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 189
+max depth: 5
+average_depth: 3.0483870967741935
+total number of nodes: 62
+--------------------------------------------------------------
+success rate: 0.9766666666666667
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 645
+max depth: 5
+average_depth: 3.1930693069306932
+total number of nodes: 202
+--------------------------------------------------------------
+success rate: 0.9805263157894737
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.1
+sum of levels: 291
+max depth: 5
+average_depth: 3.3448275862068964
+total number of nodes: 87
+---------------------------------------------------------
+random forest success rate: 0.9971929824561403
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.05
+information gain method: ENTROPY
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.7631578947368421
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 125
+max depth: 5
+average_depth: 2.840909090909091
+total number of nodes: 44
+--------------------------------------------------------------
+success rate: 0.9556140350877192
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 322
+max depth: 5
+average_depth: 3.0377358490566038
+total number of nodes: 106
+--------------------------------------------------------------
+success rate: 0.9517543859649122
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: bruises
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 249
+max depth: 5
+average_depth: 3.507042253521127
+total number of nodes: 71
+--------------------------------------------------------------
+success rate: 0.9954385964912281
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 158
+max depth: 5
+average_depth: 2.925925925925926
+total number of nodes: 54
+--------------------------------------------------------------
+success rate: 0.9873684210526316
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 557
+max depth: 5
+average_depth: 3.1292134831460676
+total number of nodes: 178
+--------------------------------------------------------------
+success rate: 0.9243859649122808
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 718
+max depth: 5
+average_depth: 3.278538812785388
+total number of nodes: 219
+--------------------------------------------------------------
+success rate: 0.9910526315789474
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 60
+max depth: 4
+average_depth: 2.142857142857143
+total number of nodes: 28
+--------------------------------------------------------------
+success rate: 0.9912280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 170
+max depth: 5
+average_depth: 2.982456140350877
+total number of nodes: 57
+--------------------------------------------------------------
+success rate: 0.9892982456140351
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: habitat
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 437
+max depth: 5
+average_depth: 3.0774647887323945
+total number of nodes: 142
+--------------------------------------------------------------
+success rate: 0.86
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: population
+information gain method: ENTROPY
+chi square alpha: 0.05
+sum of levels: 489
+max depth: 5
+average_depth: 3.7906976744186047
+total number of nodes: 129
+---------------------------------------------------------
+random forest success rate: 0.998421052631579
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.05
+information gain method: GINI_INDEX
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.7510526315789474
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 154
+max depth: 5
+average_depth: 2.9056603773584904
+total number of nodes: 53
+--------------------------------------------------------------
+success rate: 0.9194736842105263
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: habitat
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 217
+max depth: 4
+average_depth: 2.3846153846153846
+total number of nodes: 91
+--------------------------------------------------------------
+success rate: 0.9947368421052631
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 122
+max depth: 3
+average_depth: 2.392156862745098
+total number of nodes: 51
+--------------------------------------------------------------
+success rate: 0.9831578947368421
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-br
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 358
+max depth: 5
+average_depth: 3.1964285714285716
+total number of nodes: 112
+--------------------------------------------------------------
+success rate: 0.9412280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-surface
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 461
+max depth: 5
+average_depth: 3.389705882352941
+total number of nodes: 136
+--------------------------------------------------------------
+success rate: 0.8766666666666667
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 339
+max depth: 5
+average_depth: 3.4242424242424243
+total number of nodes: 99
+--------------------------------------------------------------
+success rate: 0.9685964912280701
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 662
+max depth: 5
+average_depth: 3.2450980392156863
+total number of nodes: 204
+--------------------------------------------------------------
+success rate: 0.98
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 588
+max depth: 5
+average_depth: 3.0466321243523318
+total number of nodes: 193
+--------------------------------------------------------------
+success rate: 0.9426315789473684
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 191
+max depth: 5
+average_depth: 3.1311475409836067
+total number of nodes: 61
+--------------------------------------------------------------
+success rate: 0.9824561403508771
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: GINI_INDEX
+chi square alpha: 0.05
+sum of levels: 341
+max depth: 5
+average_depth: 3.376237623762376
+total number of nodes: 101
+---------------------------------------------------------
+random forest success rate: 0.9957894736842106
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.05
+information gain method: MISCLASSIFICATION_ERROR
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9752631578947368
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 323
+max depth: 4
+average_depth: 2.691666666666667
+total number of nodes: 120
+--------------------------------------------------------------
+success rate: 0.8191228070175438
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: bruises
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 39
+max depth: 3
+average_depth: 2.4375
+total number of nodes: 16
+--------------------------------------------------------------
+success rate: 0.9963157894736843
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 75
+max depth: 5
+average_depth: 2.4193548387096775
+total number of nodes: 31
+--------------------------------------------------------------
+success rate: 0.9859649122807017
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 9
+max depth: 1
+average_depth: 0.9
+total number of nodes: 10
+--------------------------------------------------------------
+success rate: 0.8742105263157894
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 199
+max depth: 5
+average_depth: 3.0615384615384613
+total number of nodes: 65
+--------------------------------------------------------------
+success rate: 0.9435087719298245
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 287
+max depth: 5
+average_depth: 3.9315068493150687
+total number of nodes: 73
+--------------------------------------------------------------
+success rate: 0.9749122807017544
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 515
+max depth: 5
+average_depth: 3.121212121212121
+total number of nodes: 165
+--------------------------------------------------------------
+success rate: 0.9882456140350877
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 29
+max depth: 3
+average_depth: 1.6111111111111112
+total number of nodes: 18
+--------------------------------------------------------------
+success rate: 0.9315789473684211
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 264
+max depth: 5
+average_depth: 3.6164383561643834
+total number of nodes: 73
+--------------------------------------------------------------
+success rate: 0.5196491228070176
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: Chi Square Cutoff
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.05
+sum of levels: 0
+max depth: 0
+average_depth: 0.0
+total number of nodes: 1
+---------------------------------------------------------
+random forest success rate: 0.9940350877192983
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.01
+information gain method: ENTROPY
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.8177192982456141
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 260
+max depth: 5
+average_depth: 3.5616438356164384
+total number of nodes: 73
+--------------------------------------------------------------
+success rate: 0.9231578947368421
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: population
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 575
+max depth: 5
+average_depth: 3.5714285714285716
+total number of nodes: 161
+--------------------------------------------------------------
+success rate: 0.9956140350877193
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 54
+max depth: 3
+average_depth: 1.9285714285714286
+total number of nodes: 28
+--------------------------------------------------------------
+success rate: 0.7645614035087719
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 227
+max depth: 4
+average_depth: 2.986842105263158
+total number of nodes: 76
+--------------------------------------------------------------
+success rate: 0.842280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 268
+max depth: 5
+average_depth: 3.116279069767442
+total number of nodes: 86
+--------------------------------------------------------------
+success rate: 0.9831578947368421
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 406
+max depth: 5
+average_depth: 3.355371900826446
+total number of nodes: 121
+--------------------------------------------------------------
+success rate: 0.9882456140350877
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 76
+max depth: 4
+average_depth: 2.375
+total number of nodes: 32
+--------------------------------------------------------------
+success rate: 0.9471929824561404
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: cap-surface
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 382
+max depth: 5
+average_depth: 3.3508771929824563
+total number of nodes: 114
+--------------------------------------------------------------
+success rate: 0.8114035087719298
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 371
+max depth: 5
+average_depth: 3.1709401709401708
+total number of nodes: 117
+--------------------------------------------------------------
+success rate: 0.9703508771929824
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: ENTROPY
+chi square alpha: 0.01
+sum of levels: 247
+max depth: 5
+average_depth: 2.872093023255814
+total number of nodes: 86
+---------------------------------------------------------
+random forest success rate: 0.9871929824561404
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.01
+information gain method: GINI_INDEX
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.9759649122807017
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-color-br
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 469
+max depth: 5
+average_depth: 3.474074074074074
+total number of nodes: 135
+--------------------------------------------------------------
+success rate: 0.982280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-number
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 186
+max depth: 5
+average_depth: 3.263157894736842
+total number of nodes: 57
+--------------------------------------------------------------
+success rate: 0.878421052631579
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 447
+max depth: 5
+average_depth: 3.4921875
+total number of nodes: 128
+--------------------------------------------------------------
+success rate: 0.9385964912280702
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 424
+max depth: 5
+average_depth: 4.0
+total number of nodes: 106
+--------------------------------------------------------------
+success rate: 0.9728070175438597
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 483
+max depth: 5
+average_depth: 3.4014084507042255
+total number of nodes: 142
+--------------------------------------------------------------
+success rate: 0.9891228070175438
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 261
+max depth: 5
+average_depth: 3.3461538461538463
+total number of nodes: 78
+--------------------------------------------------------------
+success rate: 0.9542105263157895
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: ring-type
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 306
+max depth: 5
+average_depth: 3.731707317073171
+total number of nodes: 82
+--------------------------------------------------------------
+success rate: 0.9384210526315789
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 624
+max depth: 5
+average_depth: 3.2670157068062826
+total number of nodes: 191
+--------------------------------------------------------------
+success rate: 0.9931578947368421
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 240
+max depth: 5
+average_depth: 2.857142857142857
+total number of nodes: 84
+--------------------------------------------------------------
+success rate: 0.8263157894736842
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-root
+information gain method: GINI_INDEX
+chi square alpha: 0.01
+sum of levels: 133
+max depth: 5
+average_depth: 2.7708333333333335
+total number of nodes: 48
+---------------------------------------------------------
+random forest success rate: 0.9973684210526316
+---------------------------------------------------------
+-----------------------------------------------------------------
+chi square alpha: 0.01
+information gain method: MISCLASSIFICATION_ERROR
+
+split data shape - training: (5700, 23), validation: (1425, 23)
+--------------------------------------------------------------
+success rate: 0.8959649122807017
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: spore-print-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 346
+max depth: 5
+average_depth: 3.2641509433962264
+total number of nodes: 106
+--------------------------------------------------------------
+success rate: 0.9549122807017544
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 181
+max depth: 4
+average_depth: 2.5492957746478875
+total number of nodes: 71
+--------------------------------------------------------------
+success rate: 0.983859649122807
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-size
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 293
+max depth: 5
+average_depth: 3.3295454545454546
+total number of nodes: 88
+--------------------------------------------------------------
+success rate: 0.8675438596491228
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-ar
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 187
+max depth: 5
+average_depth: 3.1166666666666667
+total number of nodes: 60
+--------------------------------------------------------------
+success rate: 0.9380701754385965
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: veil-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 362
+max depth: 5
+average_depth: 3.89247311827957
+total number of nodes: 93
+--------------------------------------------------------------
+success rate: 0.9866666666666667
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: odor
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 47
+max depth: 3
+average_depth: 1.9583333333333333
+total number of nodes: 24
+--------------------------------------------------------------
+success rate: 0.9324561403508772
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: bruises
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 616
+max depth: 5
+average_depth: 3.8987341772151898
+total number of nodes: 158
+--------------------------------------------------------------
+success rate: 0.972280701754386
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-color
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 390
+max depth: 5
+average_depth: 2.7857142857142856
+total number of nodes: 140
+--------------------------------------------------------------
+success rate: 0.9649122807017544
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: gill-spacing
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 340
+max depth: 5
+average_depth: 3.5789473684210527
+total number of nodes: 95
+--------------------------------------------------------------
+success rate: 0.9626315789473684
+---------------------------------
+Final tree stats
+--------------------------------------------------------------
+top level attribute: stalk-surface-br
+information gain method: MISCLASSIFICATION_ERROR
+chi square alpha: 0.01
+sum of levels: 86
+max depth: 5
+average_depth: 2.6875
+total number of nodes: 32
+---------------------------------------------------------
+random forest success rate: 0.9982456140350877
+---------------------------------------------------------
+-------------------------------------
+Big Random Forest
+-------------------------------------
+
+Process finished with exit code 0

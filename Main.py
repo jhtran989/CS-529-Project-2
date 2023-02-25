@@ -49,7 +49,7 @@ if __name__ == "__main__":
                                                10,
                                                5,
                                                1000,
-                                               0.5)
+                                               0.2)
 
             data_df_training, output_df_training, data_df_validation, output_df_validation = \
                 split_training_validation(data_df_training_total, output_df_training_total, hyper_parameters)
@@ -68,7 +68,7 @@ if __name__ == "__main__":
                                          hyper_parameters)
             random_forest.generate_random_forest()
             # random_forest.check_training_data()
-            random_forest.check_training_data(print_stats=False)
+            random_forest.check_training_data(print_stats=True)
 
             # FIXME: itterrows keeps the original index (skips all over...USE DICT)
 
